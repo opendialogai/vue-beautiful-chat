@@ -13,11 +13,13 @@
       <FileMessage v-else-if="message.type === 'file'" :data="message.data" :messageColors="determineMessageColors()" />
       <TypingMessage v-else-if="message.type === 'typing'" :messageColors="determineMessageColors()" />
       <SystemMessage v-else-if="message.type === 'system'" :data="message.data" :messageColors="determineMessageColors()" />
+      <ButtonMessage v-else-if="message.type === 'button'" :message="message" :data="message.data" />
     </div>
   </div>
 </template>
 
 <script>
+import ButtonMessage from './ButtonMessage.vue'
 import TextMessage from './TextMessage.vue'
 import FileMessage from './FileMessage.vue'
 import EmojiMessage from './EmojiMessage.vue'
@@ -32,6 +34,7 @@ export default {
     }
   },
   components: {
+    ButtonMessage,
     TextMessage,
     FileMessage,
     EmojiMessage,
@@ -128,7 +131,7 @@ export default {
   font-size: 14px;
   line-height: 1.4;
   white-space: pre-wrap;
-  -webkit-font-smoothing: subpixel-antialiased
+  -webkit-font-smoothing: subpixel-antialiased;
 }
 .sc-message--content.sent .sc-message--text {
   color: white;
