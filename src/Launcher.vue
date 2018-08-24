@@ -6,6 +6,7 @@
       :agentProfile="agentProfile"
       :isOpen="isOpen"
       :onClose="close"
+      :onButtonClick="onButtonClick"
       :showEmoji="showEmoji"
       :showFile="showFile"
       :placeholder="placeholder"
@@ -63,6 +64,10 @@ export default {
     showTypingIndicator: {
       type: Boolean,
       default: () => true
+    },
+    onButtonClick: {
+      type: Function,
+      required: true
     },
     colors: {
       type: Object,

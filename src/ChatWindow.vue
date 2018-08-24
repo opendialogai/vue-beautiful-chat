@@ -13,6 +13,7 @@
       :showTypingIndicator="showTypingIndicator"
       :colors="colors"
       :alwaysScrollToBottom="alwaysScrollToBottom"
+      :onButtonClick="onButtonClick"
     />
     <UserInput
       :showEmoji="showEmoji"
@@ -52,6 +53,10 @@ export default {
       required: true
     },
     onClose: {
+      type: Function,
+      required: true
+    },
+    onButtonClick: {
       type: Function,
       required: true
     },

@@ -13,7 +13,7 @@
       <FileMessage v-else-if="message.type === 'file'" :data="message.data" :messageColors="determineMessageColors()" />
       <TypingMessage v-else-if="message.type === 'typing'" :messageColors="determineMessageColors()" />
       <SystemMessage v-else-if="message.type === 'system'" :data="message.data" :messageColors="determineMessageColors()" />
-      <ButtonMessage v-else-if="message.type === 'button'" :message="message" :data="message.data" />
+      <ButtonMessage v-else-if="message.type === 'button'" :message="message" :data="message.data" :onButtonClick="onButtonClick" />
     </div>
   </div>
 </template>
@@ -52,6 +52,10 @@ export default {
     },
     colors: {
       type: Object,
+      required: true
+    },
+    onButtonClick: {
+      type: Function,
       required: true
     }
   },

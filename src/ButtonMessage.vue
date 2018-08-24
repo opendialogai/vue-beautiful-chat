@@ -18,13 +18,15 @@ export default {
     message: {
       type: Object,
       required: true
+    },
+    onButtonClick: {
+      type: Function,
+      required: true
     }
   },
   methods: {
     _handleClick (button) {
-      this.message.type = 'text'
-      this.message.author = 'me'
-      this.message.data.callback_id = button.callback_id
+      this.onButtonClick(button, this.message);
     }
   }
 }
