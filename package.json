@@ -55,6 +55,7 @@
   },
   "dependencies": {
     "babel-preset-env": "^1.6.1",
-    "emoji-js": "^3.4.0"
+    "emoji-js": "^3.4.0",
+    "vue-linkify": "1.0.1"
   }
 }
