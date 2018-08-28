@@ -9,6 +9,7 @@
       :isOpen="isChatOpen"
       :close="closeChat"
       :open="openChat"
+      :onButtonClick="onButtonClick"
       :showEmoji="true"
       :showFile="true"
       :showTypingIndicator="showTypingIndicator"
@@ -79,6 +80,9 @@ export default {
     },
     closeChat () {
       this.isChatOpen = false
+    },
+    onButtonClick() {
+
     },
     setColor (color) {
       this.colors = this.availableColors[color]

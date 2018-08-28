@@ -1,6 +1,6 @@
 <template>
   <div class="sc-message--button">
-    <p class="sc-message--button--text">{{data.text}}</p>
+    <p class="sc-message--button--text" v-linkified>{{data.text}}</p>
 
     <div class="sc-message--button--buttons">
       <button v-for="button in data.buttons" @click="_handleClick(button)">{{button.text}}</button>

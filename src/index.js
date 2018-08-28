@@ -1,3 +1,5 @@
+import linkify from 'vue-linkify'
+
 import Launcher from './Launcher.vue'
 
 const defaultComponentName = 'beautiful-chat'
@@ -27,6 +29,8 @@ const Plugin = {
      * Sets custom component name (if provided)
      */
     Vue.component(this.componentName, Launcher)
+
+    Vue.directive('linkified', linkify)
   }
 }
 
