@@ -2,9 +2,11 @@
   <div class="sc-message--button">
     <p class="sc-message--button--text" v-linkified>{{data.text}}</p>
 
-    <div class="sc-message--button--buttons">
-      <button v-for="button in data.buttons" @click="_handleClick(button)">{{button.text}}</button>
-    </div>
+    <template v-if="data.buttons.length">
+      <div class="sc-message--button--buttons">
+        <button v-for="button in data.buttons" @click="_handleClick(button)">{{button.text}}</button>
+      </div>
+    </template>
   </div>
 </template>
 
@@ -33,18 +35,40 @@ export default {
 </script>
 
 <style scoped>
+.sc-message--button {
+  background: #eaeaea;
+  border-radius: 6px;
+  padding: 0 12px;
+}
+
+.sc-message--button .sc-message--button--buttons {
+  padding-bottom: 5px;
+}
+
 .sc-message--button button {
   cursor: pointer;
   color: white;
   background-color: #4e8cff;
-  border-radius: 6px;
+  border-radius: 15px;
   border: none;
   font-size: 14px;
-  padding: 17px 20px;
-  margin-right: 10px;
+  padding: 12px 17px;
+  margin: 0 10px 10px 0;
+}
+
+.sc-message--button button:hover {
+  background-color: blue;
 }
 
 .sc-message--button button:last-child {
   margin-right: 0;
+}
+
+.sc-message--button .sc-message--button--text {
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 1.4;
+  white-space: pre-wrap;
+  -webkit-font-smoothing: subpixel-antialiased;
 }
 </style>
