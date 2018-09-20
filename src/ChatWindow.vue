@@ -14,13 +14,24 @@
       :colors="colors"
       :alwaysScrollToBottom="alwaysScrollToBottom"
       :onButtonClick="onButtonClick"
+      :showOnlyLastMessage="showOnlyLastMessage"
     />
-    <UserInput
-      :showEmoji="showEmoji"
-      :onSubmit="onUserInputSubmit"
-      :showFile="showFile"
-      :placeholder="placeholder"
-      :colors="colors" />
+    <template v-if="!showLongTextInput">
+      <UserInput
+        :showEmoji="showEmoji"
+        :onSubmit="onUserInputSubmit"
+        :showFile="showFile"
+        :placeholder="placeholder"
+        :colors="colors" />
+    </template>
+    <template v-else>
+      <LongTextUserInput
+        :maxInputCharacters="maxInputCharacters"
+        :buttonText="buttonText"
+        :onSubmit="onUserInputSubmit"
+        :placeholder="placeholder"
+        :colors="colors" />
+    </template>
   </div>
 </template>
 
@@ -28,12 +39,14 @@
 import Header from './Header.vue'
 import MessageList from './MessageList.vue'
 import UserInput from './UserInput.vue'
+import LongTextUserInput from './LongTextUserInput.vue'
 
 export default {
   components: {
     Header,
     MessageList,
-    UserInput
+    UserInput,
+    LongTextUserInput
   },
   props: {
     showEmoji: {
@@ -75,6 +88,22 @@ export default {
     showTypingIndicator: {
       type: Boolean,
       default: () => false
+    },
+    showLongTextInput: {
+      type: Boolean,
+      default: () => false
+    },
+    showOnlyLastMessage: {
+      type: Boolean,
+      default: () => false
+    },
+    maxInputCharacters: {
+      type: Number,
+      default: 0
+    },
+    buttonText: {
+      type: String,
+      default: 'Submit'
     },
     colors: {
       type: Object,

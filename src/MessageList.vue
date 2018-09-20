@@ -1,7 +1,12 @@
 <template>
   <div class="sc-message-list" ref="scrollList" :style="{backgroundColor: colors.messageList.bg}">
-    <Message v-for="(message, idx) in messages" :message="message" :chatImageUrl="chatImageUrl" :key="idx" :colors="colors" :onButtonClick="onButtonClick" />
-    <Message v-show="showTypingIndicator" :message="{author: 'them', type: 'typing'}" :chatImageUrl="chatImageUrl" :colors="colors" :onButtonClick="onButtonClick" />
+    <template v-if="showOnlyLastMessage">
+      <Message :message="lastMessage" :chatImageUrl="chatImageUrl" :colors="colors" :onButtonClick="onButtonClick" />
+    </template>
+    <template v-else>
+      <Message v-for="(message, idx) in messages" :message="message" :chatImageUrl="chatImageUrl" :key="idx" :colors="colors" :onButtonClick="onButtonClick" />
+      <Message v-show="showTypingIndicator" :message="{author: 'them', type: 'typing'}" :chatImageUrl="chatImageUrl" :colors="colors" :onButtonClick="onButtonClick" />
+    </template>
   </div>
 </template>
 <script>
@@ -25,6 +30,10 @@ export default {
       type: Boolean,
       default: () => false
     },
+    showOnlyLastMessage: {
+      type: Boolean,
+      default: () => false
+    },
     colors: {
       type: Object,
       required: true
@@ -36,6 +45,13 @@ export default {
     onButtonClick: {
       type: Function,
       required: true
+    }
+  },
+  computed: {
+    lastMessage() {
+      if (!this.messages.length) return [];
+
+      return this.messages[this.messages.length - 1]
     }
   },
   methods: {
