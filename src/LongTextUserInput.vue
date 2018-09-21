@@ -16,6 +16,7 @@
         @blur="setInputActive(false)"
         @input="userInput"
         @keypress="onKeyPress"
+        @paste="onPaste"
         :contentEditable="contentEditable"
         :placeholder="placeholder"
         class="sc-user-long-input--text"
@@ -89,6 +90,17 @@ export default {
       if (this.maxInputCharacters && this.charactersCount >= this.maxInputCharacters) {
         event.preventDefault()
       }
+    },
+    onPaste(event) {
+      event.preventDefault()
+
+      var text = event.clipboardData.getData('text/plain')
+
+      if (this.maxInputCharacters && (this.charactersCount + text.length) >= this.maxInputCharacters) {
+        text = text.substring(0, this.maxInputCharacters - this.charactersCount)
+      }
+
+      document.execCommand("insertHTML", false, text)
     },
     userInput() {
       const text = this.$refs.userInput.textContent
@@ -166,6 +178,7 @@ export default {
   border-bottom-left-radius: 10px;
   box-sizing: border-box;
   padding: 18px;
+  margin-bottom: 65px;
   font-size: 15px;
   font-weight: 400;
   line-height: 1.33;
