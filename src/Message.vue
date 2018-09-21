@@ -8,7 +8,7 @@
       <div v-if="message.type !== 'system'" class="sc-message--avatar" :style="{
         backgroundImage: `url(${chatImageUrl})`
       }"></div>
-      <TextMessage v-if="message.type === 'text'" :data="message.data" :messageColors="determineMessageColors()" />
+      <TextMessage v-if="message.type === 'text' || message.type === 'longtext_response'" :data="message.data" :messageColors="determineMessageColors()" />
       <LongTextMessage v-if="message.type === 'longtext'" :data="message.data" :messageColors="determineMessageColors()" />
       <EmojiMessage v-else-if="message.type === 'emoji'" :data="message.data" />
       <FileMessage v-else-if="message.type === 'file'" :data="message.data" :messageColors="determineMessageColors()" />
