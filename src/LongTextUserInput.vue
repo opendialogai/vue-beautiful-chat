@@ -1,5 +1,13 @@
 <template>
-  <div>
+  <div class="sc-user-long-input--container">
+    <div class="sc-user-long-input--message">
+      <template v-if="showConfirmationMessage">
+        Are you sure you want to submit?
+      </template>
+      <template v-else>
+        {{ headerText }}
+      </template>
+    </div>
     <form class="sc-user-long-input" :class="{active: inputActive}" :style="{background: colors.userInput.bg}">
       <div
         role="button"
@@ -8,7 +16,7 @@
         @blur="setInputActive(false)"
         @input="userInput"
         @keypress="onKeyPress"
-        contentEditable="true"
+        :contentEditable="contentEditable"
         :placeholder="placeholder"
         class="sc-user-long-input--text"
         ref="userInput"
@@ -17,8 +25,7 @@
       </div>
       <div class="sc-user-long-input--buttons">
         <template v-if="showConfirmationMessage">
-          <div>Are you sure you want to submit?</div>
-          <div class="sc-user-long-input--button">
+          <div class="sc-user-long-input--button center">
             <button @click="submitYes">Yes</button>
             <button @click="submitEdit">Edit</button>
           </div>
@@ -48,6 +55,10 @@ export default {
       type: Function,
       required: true
     },
+    headerText: {
+      type: String,
+      default: ''
+    },
     buttonText: {
       type: String,
       default: 'Submit'
@@ -69,7 +80,8 @@ export default {
     return {
       charactersCount: 0,
       inputActive: false,
-      showConfirmationMessage: false
+      showConfirmationMessage: false,
+      contentEditable: true
     }
   },
   methods: {
@@ -95,15 +107,17 @@ export default {
     submitEdit(event) {
       event.preventDefault()
 
+      this.contentEditable = true
       this.showConfirmationMessage = false
     },
     submitText(event) {
       event.preventDefault()
 
+      this.contentEditable = false
       this.showConfirmationMessage = true
     },
     _submitText() {
-      const text = this.$refs.userInput.textContent
+      const text = this.$refs.userInput.innerText
 
       if (text && text.length > 0) {
         this.onSubmit({
@@ -114,13 +128,16 @@ export default {
         this.$refs.userInput.innerHTML = ''
       }
     }
+  },
+  mounted () {
+    this.$refs.userInput.focus()
   }
 }
 </script>
 
 <style>
 .sc-user-long-input {
-  min-height: 55px;
+  height: 100%;
   margin: 0px;
   position: relative;
   bottom: 0;
@@ -131,8 +148,18 @@ export default {
   transition: background-color .2s ease,box-shadow .2s ease;
 }
 
+.sc-user-long-input--container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.sc-user-long-input--message {
+  padding: 25px 15px;
+}
+
 .sc-user-long-input--text {
-  width: 300px;
+  width: 100%;
   resize: none;
   border: none;
   outline: none;
@@ -146,7 +173,6 @@ export default {
   word-wrap: break-word;
   color: #565867;
   -webkit-font-smoothing: antialiased;
-  min-height: 300px;
   overflow: scroll;
   bottom: 0;
   overflow-x: hidden;
@@ -164,7 +190,7 @@ export default {
 .sc-user-long-input--buttons {
   position: absolute;
   right: 0;
-  bottom: 5px;
+  bottom: 10px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -178,6 +204,13 @@ export default {
 .sc-user-long-input--button {
   display: flex;
   margin-left: auto;
+}
+
+.sc-user-long-input--button.center {
+  margin-right: auto;
+}
+.sc-user-long-input--button.center button:last-child {
+  margin-right: 0;
 }
 
 .sc-user-long-input--button button {

@@ -7,6 +7,7 @@
       :colors="colors"
     />
     <MessageList
+      v-if="showMessages"
       :messages="messages"
       :imageUrl="agentProfile.imageUrl"
       :chatImageUrl="agentProfile.imageUrl"
@@ -14,7 +15,6 @@
       :colors="colors"
       :alwaysScrollToBottom="alwaysScrollToBottom"
       :onButtonClick="onButtonClick"
-      :showOnlyLastMessage="showOnlyLastMessage"
     />
     <template v-if="!showLongTextInput">
       <UserInput
@@ -26,6 +26,7 @@
     </template>
     <template v-else>
       <LongTextUserInput
+        :headerText="headerText"
         :maxInputCharacters="maxInputCharacters"
         :buttonText="buttonText"
         :onSubmit="onUserInputSubmit"
@@ -93,13 +94,17 @@ export default {
       type: Boolean,
       default: () => false
     },
-    showOnlyLastMessage: {
+    showMessages: {
       type: Boolean,
-      default: () => false
+      default: () => true
     },
     maxInputCharacters: {
       type: Number,
       default: 0
+    },
+    headerText: {
+      type: String,
+      default: ''
     },
     buttonText: {
       type: String,

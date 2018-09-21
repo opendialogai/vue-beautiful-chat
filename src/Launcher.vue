@@ -14,8 +14,9 @@
       :colors="colors"
       :alwaysScrollToBottom="alwaysScrollToBottom"
       :showLongTextInput="showLongTextInput"
-      :showOnlyLastMessage="showOnlyLastMessage"
+      :showMessages="showMessages"
       :maxInputCharacters="maxInputCharacters"
+      :headerText="headerText"
       :buttonText="buttonText"
     />
   </div>
@@ -73,13 +74,17 @@ export default {
       type: Boolean,
       default: () => false
     },
-    showOnlyLastMessage: {
+    showMessages: {
       type: Boolean,
-      default: () => false
+      default: () => true
     },
     maxInputCharacters: {
       type: Number,
       default: 0
+    },
+    headerText: {
+      type: String,
+      default: ''
     },
     buttonText: {
       type: String,
