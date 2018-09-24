@@ -13,6 +13,11 @@
       :showTypingIndicator="showTypingIndicator"
       :colors="colors"
       :alwaysScrollToBottom="alwaysScrollToBottom"
+      :showLongTextInput="showLongTextInput"
+      :showMessages="showMessages"
+      :maxInputCharacters="maxInputCharacters"
+      :headerText="headerText"
+      :buttonText="buttonText"
     />
   </div>
 </template>
@@ -64,6 +69,26 @@ export default {
     showTypingIndicator: {
       type: Boolean,
       default: () => true
+    },
+    showLongTextInput: {
+      type: Boolean,
+      default: () => false
+    },
+    showMessages: {
+      type: Boolean,
+      default: () => true
+    },
+    maxInputCharacters: {
+      type: Number,
+      default: 0
+    },
+    headerText: {
+      type: String,
+      default: ''
+    },
+    buttonText: {
+      type: String,
+      default: 'Submit'
     },
     onButtonClick: {
       type: Function,

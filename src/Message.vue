@@ -8,7 +8,8 @@
       <div v-if="message.type !== 'system'" class="sc-message--avatar" :style="{
         backgroundImage: `url(${chatImageUrl})`
       }"></div>
-      <TextMessage v-if="message.type === 'text'" :data="message.data" :messageColors="determineMessageColors()" />
+      <TextMessage v-if="message.type === 'text' || message.type === 'longtext_response'" :data="message.data" :messageColors="determineMessageColors()" />
+      <LongTextMessage v-if="message.type === 'longtext'" :data="message.data" :messageColors="determineMessageColors()" />
       <EmojiMessage v-else-if="message.type === 'emoji'" :data="message.data" />
       <FileMessage v-else-if="message.type === 'file'" :data="message.data" :messageColors="determineMessageColors()" />
       <TypingMessage v-else-if="message.type === 'typing'" :messageColors="determineMessageColors()" />
@@ -21,6 +22,7 @@
 <script>
 import ButtonMessage from './ButtonMessage.vue'
 import TextMessage from './TextMessage.vue'
+import LongTextMessage from './LongTextMessage.vue'
 import FileMessage from './FileMessage.vue'
 import EmojiMessage from './EmojiMessage.vue'
 import TypingMessage from './TypingMessage.vue'
@@ -36,6 +38,7 @@ export default {
   components: {
     ButtonMessage,
     TextMessage,
+    LongTextMessage,
     FileMessage,
     EmojiMessage,
     TypingMessage,

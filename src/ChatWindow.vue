@@ -7,6 +7,7 @@
       :colors="colors"
     />
     <MessageList
+      v-if="showMessages"
       :messages="messages"
       :imageUrl="agentProfile.imageUrl"
       :chatImageUrl="agentProfile.imageUrl"
@@ -15,12 +16,23 @@
       :alwaysScrollToBottom="alwaysScrollToBottom"
       :onButtonClick="onButtonClick"
     />
-    <UserInput
-      :showEmoji="showEmoji"
-      :onSubmit="onUserInputSubmit"
-      :showFile="showFile"
-      :placeholder="placeholder"
-      :colors="colors" />
+    <template v-if="!showLongTextInput">
+      <UserInput
+        :showEmoji="showEmoji"
+        :onSubmit="onUserInputSubmit"
+        :showFile="showFile"
+        :placeholder="placeholder"
+        :colors="colors" />
+    </template>
+    <template v-else>
+      <LongTextUserInput
+        :headerText="headerText"
+        :maxInputCharacters="maxInputCharacters"
+        :buttonText="buttonText"
+        :onSubmit="onUserInputSubmit"
+        :placeholder="placeholder"
+        :colors="colors" />
+    </template>
   </div>
 </template>
 
@@ -28,12 +40,14 @@
 import Header from './Header.vue'
 import MessageList from './MessageList.vue'
 import UserInput from './UserInput.vue'
+import LongTextUserInput from './LongTextUserInput.vue'
 
 export default {
   components: {
     Header,
     MessageList,
-    UserInput
+    UserInput,
+    LongTextUserInput
   },
   props: {
     showEmoji: {
@@ -75,6 +89,26 @@ export default {
     showTypingIndicator: {
       type: Boolean,
       default: () => false
+    },
+    showLongTextInput: {
+      type: Boolean,
+      default: () => false
+    },
+    showMessages: {
+      type: Boolean,
+      default: () => true
+    },
+    maxInputCharacters: {
+      type: Number,
+      default: 0
+    },
+    headerText: {
+      type: String,
+      default: ''
+    },
+    buttonText: {
+      type: String,
+      default: 'Submit'
     },
     colors: {
       type: Object,
