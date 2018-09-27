@@ -18,6 +18,7 @@
       :maxInputCharacters="maxInputCharacters"
       :headerText="headerText"
       :buttonText="buttonText"
+      :initialText="initialText"
     />
   </div>
 </template>
@@ -93,6 +94,10 @@ export default {
     onButtonClick: {
       type: Function,
       required: true
+    },
+    initialText: {
+       type: String,
+       default: null
     },
     colors: {
       type: Object,

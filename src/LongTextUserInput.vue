@@ -22,8 +22,7 @@
         class="sc-user-long-input--text"
         ref="userInput"
         :style="{color: colors.userInput.text}"
-      >
-      </div>
+      >{{initialText}}</div>
       <div class="sc-user-long-input--buttons">
         <template v-if="showConfirmationMessage">
           <div class="sc-user-long-input--button center">
@@ -75,6 +74,10 @@ export default {
     colors: {
       type: Object,
       required: true
+    },
+    initialText: {
+      type: String,
+      default: null
     }
   },
   data () {

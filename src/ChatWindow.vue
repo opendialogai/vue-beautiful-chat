@@ -31,6 +31,7 @@
         :buttonText="buttonText"
         :onSubmit="onUserInputSubmit"
         :placeholder="placeholder"
+        :initialText="initialText"
         :colors="colors" />
     </template>
   </div>
@@ -117,6 +118,10 @@ export default {
     alwaysScrollToBottom: {
       type: Boolean,
       required: true
+    },
+    initialText: {
+        type: String,
+        default: null
     }
   },
   data() {
