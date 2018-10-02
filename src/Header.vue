@@ -1,6 +1,6 @@
 <template>
   <div class="sc-header" :style="{background: colors.header.bg, color: colors.header.text}">
-    <img class="sc-header--img" :src="imageUrl" alt="" />
+    <img v-if="imageUrl" class="sc-header--img" :src="imageUrl" alt="" />
     <div class="sc-header--team-name"> {{teamName}} </div>
   </div>
 </template>
@@ -9,7 +9,6 @@ export default {
   props: {
     imageUrl: {
       type: String,
-      required: true
     },
     teamName: {
       type: String
