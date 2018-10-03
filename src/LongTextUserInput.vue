@@ -37,7 +37,7 @@
             </div>
           </template>
           <div class="sc-user-long-input--button">
-            <button @click="submitText">{{ buttonText }}</button>
+            <button @click="submitText" :disabled="!charactersCount">{{ buttonText }}</button>
           </div>
         </template>
       </div>
@@ -238,6 +238,10 @@ export default {
   font-size: 14px;
   padding: 12px 17px;
   margin-right: 15px;
+}
+
+.sc-user-long-input--button button:disabled {
+  background-color: #a9a9a9;
 }
 
 .sc-user-long-input.active {
