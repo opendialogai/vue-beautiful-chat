@@ -39,6 +39,7 @@ export default {
   background: #eaeaea;
   border-radius: 6px;
   padding: 0 12px;
+  max-width: 100%;
 }
 
 .sc-message--button .sc-message--button--buttons {
@@ -69,6 +70,7 @@ export default {
   font-size: 14px;
   line-height: 1.4;
   white-space: pre-wrap;
+  word-wrap: break-word;
   -webkit-font-smoothing: subpixel-antialiased;
 }
 </style>

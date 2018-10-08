@@ -26,6 +26,8 @@ export default {
   font-size: 14px;
   line-height: 1.4;
   white-space: pre-wrap;
+  word-wrap: break-word;
+  max-width: 100%;
   -webkit-font-smoothing: subpixel-antialiased;
 }
 .sc-message--content.sent .sc-message--long-text {
