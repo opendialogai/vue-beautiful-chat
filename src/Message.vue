@@ -148,5 +148,7 @@ export default {
   color: #263238;
   background-color: #f4f7f9;
   margin-right: 40px;
+  max-width: calc(100% - 40px);
+  word-wrap: break-word;
 }
 </style>
