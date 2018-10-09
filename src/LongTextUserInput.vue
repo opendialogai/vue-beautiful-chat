@@ -145,6 +145,10 @@ export default {
     }
   },
   mounted () {
+    if (this.initialText) {
+      this.charactersCount = this.initialText.length
+    }
+
     this.$refs.userInput.focus()
   }
 }

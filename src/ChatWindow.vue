@@ -18,6 +18,7 @@
     />
     <template v-if="!showLongTextInput">
       <UserInput
+        :contentEditable="contentEditable"
         :showEmoji="showEmoji"
         :onSubmit="onUserInputSubmit"
         :showFile="showFile"
@@ -51,6 +52,10 @@ export default {
     LongTextUserInput
   },
   props: {
+    contentEditable: {
+      type: Boolean,
+      default: true
+    },
     showEmoji: {
       type: Boolean,
       default: false

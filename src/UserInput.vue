@@ -5,14 +5,14 @@
       {{file.name}}
       <span class='delete-file-message' @click="cancelFile()" ><img src="./assets/close.svg" alt='close icon' height="10" title='Remove the file' /></span>
     </div>
-    <form class="sc-user-input" :class="{active: inputActive}" :style="{background: colors.userInput.bg}">
+    <form class="sc-user-input" :class="{active: inputActive, disabled: !contentEditable}" :style="{background: colors.userInput.bg}">
       <div
         role="button"
         tabIndex="0"
         @focus="setInputActive(true)"
         @blur="setInputActive(false)"
         @keydown="handleKey"
-        contentEditable="true"
+        :contentEditable="contentEditable"
         :placeholder="placeholder"
         class="sc-user-input--text"
         ref="userInput"
@@ -48,13 +48,17 @@ export default {
     SendIcon
   },
   props: {
+    contentEditable: {
+      type: Boolean,
+      default: true
+    },
     showEmoji: {
       type: Boolean,
-      default: () => false
+      default: false
     },
     showFile: {
       type: Boolean,
-      default: () => false
+      default: false
     },
     onSubmit: {
       type: Function,
@@ -144,6 +148,11 @@ export default {
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
   transition: background-color .2s ease,box-shadow .2s ease;
+}
+
+.sc-user-input.disabled {
+  pointer-events: none;
+  background: #a9a9a9 !important;
 }
 
 .sc-user-input--text {
