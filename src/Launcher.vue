@@ -7,6 +7,7 @@
       :isOpen="isOpen"
       :onClose="close"
       :onButtonClick="onButtonClick"
+      :contentEditable="contentEditable"
       :showEmoji="showEmoji"
       :showFile="showFile"
       :placeholder="placeholder"
@@ -27,6 +28,10 @@ import ChatWindow from './ChatWindow.vue'
 
 export default {
   props: {
+    contentEditable: {
+      type: Boolean,
+      default: true
+    },
     showEmoji: {
       type: Boolean,
       default: false
