@@ -1,6 +1,8 @@
 <template>
   <div class="sc-message--button">
-    <p class="sc-message--button--text" v-linkified>{{data.text}}</p>
+    <p class="sc-message--button--text" v-linkified>
+      <span v-html="data.text"></span>
+    </p>
 
     <template v-if="data.buttons.length">
       <div class="sc-message--button--buttons">

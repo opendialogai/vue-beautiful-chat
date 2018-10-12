@@ -5,7 +5,7 @@
         Are you sure you want to submit?
       </template>
       <template v-else>
-        {{ headerText }}
+        <span v-html="headerText"></span>
       </template>
     </div>
     <form class="sc-user-long-input" :class="{active: inputActive}" :style="{background: colors.userInput.bg}">
