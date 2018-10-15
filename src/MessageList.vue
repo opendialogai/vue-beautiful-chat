@@ -1,7 +1,7 @@
 <template>
   <div class="sc-message-list" ref="scrollList" :style="{backgroundColor: colors.messageList.bg}">
-    <Message v-for="(message, idx) in messages" :message="message" :chatImageUrl="chatImageUrl" :key="idx" :colors="colors" :onButtonClick="onButtonClick" />
-    <Message v-show="showTypingIndicator" :message="{author: 'them', type: 'typing'}" :chatImageUrl="chatImageUrl" :colors="colors" :onButtonClick="onButtonClick" />
+    <Message v-for="(message, idx) in messages" :message="message" :chatImageUrl="chatImageUrl" :key="idx" :colors="colors" :onButtonClick="onButtonClick" :onFormButtonClick="onFormButtonClick" />
+    <Message v-show="showTypingIndicator" :message="{author: 'them', type: 'typing'}" :chatImageUrl="chatImageUrl" :colors="colors" :onButtonClick="onButtonClick" :onFormButtonClick="onFormButtonClick" />
   </div>
 </template>
 <script>
@@ -34,6 +34,10 @@ export default {
       required: true
     },
     onButtonClick: {
+      type: Function,
+      required: true
+    },
+    onFormButtonClick: {
       type: Function,
       required: true
     }

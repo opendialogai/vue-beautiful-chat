@@ -30,7 +30,7 @@ export default {
   },
   methods: {
     _handleClick (button) {
-      this.onButtonClick(button, this.message);
+      this.onButtonClick(button, this.message)
     }
   }
 }

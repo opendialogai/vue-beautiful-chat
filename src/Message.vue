@@ -12,11 +12,13 @@
       <TypingMessage v-else-if="message.type === 'typing'" :messageColors="determineMessageColors()" />
       <SystemMessage v-else-if="message.type === 'system'" :data="message.data" :messageColors="determineMessageColors()" />
       <ButtonMessage v-else-if="message.type === 'button'" :message="message" :data="message.data" :onButtonClick="onButtonClick" />
+      <FormMessage v-else-if="message.type === 'webchat_form'" :message="message" :data="message.data" :messageColors="determineMessageColors()" :onFormButtonClick="onFormButtonClick" />
     </div>
   </div>
 </template>
 
 <script>
+import FormMessage from './FormMessage.vue'
 import ButtonMessage from './ButtonMessage.vue'
 import TextMessage from './TextMessage.vue'
 import LongTextMessage from './LongTextMessage.vue'
@@ -33,6 +35,7 @@ export default {
     }
   },
   components: {
+    FormMessage,
     ButtonMessage,
     TextMessage,
     LongTextMessage,
@@ -55,6 +58,10 @@ export default {
       required: true
     },
     onButtonClick: {
+      type: Function,
+      required: true
+    },
+    onFormButtonClick: {
       type: Function,
       required: true
     }
