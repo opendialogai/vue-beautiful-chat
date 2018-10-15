@@ -1,5 +1,7 @@
 <template>
-  <div class="sc-message--text" :style="messageColors" v-linkified>{{data.text}}<p v-if="data.meta" class='sc-message--meta' :style="{color: messageColors.color}">{{data.meta}}</p>
+  <div class="sc-message--text" :style="messageColors" v-linkified>
+    <span v-html="data.text"></span>
+    <p v-if="data.meta" class='sc-message--meta' :style="{color: messageColors.color}">{{data.meta}}</p>
   </div>
 </template>
 
