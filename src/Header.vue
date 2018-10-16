@@ -75,10 +75,4 @@ export default {
   padding: 13px;
   box-sizing: border-box;
 }
-
-@media (max-width: 450px) {
-  .sc-header {
-    border-radius: 0px;
-  }
-}
 </style>
