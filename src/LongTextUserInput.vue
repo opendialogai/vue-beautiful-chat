@@ -175,6 +175,7 @@ export default {
 
 .sc-user-long-input--message {
   padding: 25px 15px;
+  background-color: white;
 }
 
 .sc-user-long-input--text {
