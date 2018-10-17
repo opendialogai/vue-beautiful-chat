@@ -7,6 +7,7 @@
       :isOpen="isOpen"
       :onClose="close"
       :onButtonClick="onButtonClick"
+      :onFormButtonClick="onFormButtonClick"
       :contentEditable="contentEditable"
       :showEmoji="showEmoji"
       :showFile="showFile"
@@ -97,6 +98,10 @@ export default {
       default: 'Submit'
     },
     onButtonClick: {
+      type: Function,
+      required: true
+    },
+    onFormButtonClick: {
       type: Function,
       required: true
     },

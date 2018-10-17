@@ -15,6 +15,7 @@
       :colors="colors"
       :alwaysScrollToBottom="alwaysScrollToBottom"
       :onButtonClick="onButtonClick"
+      :onFormButtonClick="onFormButtonClick"
     />
     <template v-if="!showLongTextInput">
       <UserInput
@@ -77,6 +78,10 @@ export default {
       required: true
     },
     onButtonClick: {
+      type: Function,
+      required: true
+    },
+    onFormButtonClick: {
       type: Function,
       required: true
     },

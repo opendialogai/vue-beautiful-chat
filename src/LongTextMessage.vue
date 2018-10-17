@@ -32,13 +32,13 @@ export default {
   max-width: 100%;
   -webkit-font-smoothing: subpixel-antialiased;
 }
+
 .sc-message--content.sent .sc-message--long-text {
   color: white;
   background-color: #4e8cff;
   max-width: calc(100% - 120px);
   word-wrap: break-word;
 }
-
 .sc-message--content.received .sc-message--long-text {
   color: #263238;
   background-color: #f4f7f9;
