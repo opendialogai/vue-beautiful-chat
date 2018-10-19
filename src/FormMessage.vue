@@ -75,7 +75,7 @@ export default {
 .sc-message--form {
   padding: 17px 20px;
   border-radius: 6px;
-  font-weight: 300;
+  font-weight: 400;
   font-size: 14px;
   line-height: 1.4;
   word-wrap: break-word;

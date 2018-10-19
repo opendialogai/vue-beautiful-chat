@@ -68,7 +68,7 @@ export default {
 }
 
 .sc-message--button .sc-message--button--text {
-  font-weight: 300;
+  font-weight: 400;
   font-size: 14px;
   line-height: 1.4;
   white-space: pre-wrap;
