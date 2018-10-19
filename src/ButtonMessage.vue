@@ -1,5 +1,5 @@
 <template>
-  <div class="sc-message--button">
+  <div class="sc-message--button" :style="messageColors">
     <p class="sc-message--button--text" v-linkified>
       <span v-html="data.text"></span>
     </p>
@@ -20,6 +20,10 @@ export default {
       required: true
     },
     message: {
+      type: Object,
+      required: true
+    },
+    messageColors: {
       type: Object,
       required: true
     },

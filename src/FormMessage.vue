@@ -1,5 +1,5 @@
 <template>
-  <div class="sc-message--form">
+  <div class="sc-message--form" :style="messageColors">
     <div class="sc-message--form--text" v-html="data.text"></div>
     <div v-if="errors.length" class="sc-message--form--errors">
       <div v-for="error in errors">
