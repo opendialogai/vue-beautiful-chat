@@ -31,6 +31,7 @@
         :headerText="headerText"
         :maxInputCharacters="maxInputCharacters"
         :buttonText="buttonText"
+        :confirmationMessage="confirmationMessage"
         :onSubmit="onUserInputSubmit"
         :placeholder="placeholder"
         :initialText="initialText"
@@ -120,6 +121,10 @@ export default {
     buttonText: {
       type: String,
       default: 'Submit'
+    },
+    confirmationMessage: {
+      type: String,
+      default: 'Are you sure you want to submit?'
     },
     colors: {
       type: Object,

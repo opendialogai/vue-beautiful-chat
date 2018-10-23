@@ -20,6 +20,7 @@
       :maxInputCharacters="maxInputCharacters"
       :headerText="headerText"
       :buttonText="buttonText"
+      :confirmationMessage="confirmationMessage"
       :initialText="initialText"
     />
   </div>
@@ -96,6 +97,10 @@ export default {
     buttonText: {
       type: String,
       default: 'Submit'
+    },
+    confirmationMessage: {
+      type: String,
+      default: 'Are you sure you want to submit?'
     },
     onButtonClick: {
       type: Function,
