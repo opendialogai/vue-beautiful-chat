@@ -26,9 +26,9 @@ export default {
 </script>
 <style scoped>
 .sc-header {
-  min-height: 75px;
-  border-top-left-radius: 9px;
-  border-top-right-radius: 9px;
+  min-height: 56px;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
   padding: 10px;
   box-shadow: 0 1px 4px rgba(0,0,0,.2);
   position: relative;

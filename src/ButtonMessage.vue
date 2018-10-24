@@ -39,7 +39,7 @@ export default {
 <style scoped>
 .sc-message--button {
   background: #eaeaea;
-  border-radius: 6px;
+  border-radius: 30px;
   padding: 0 12px;
   max-width: 100%;
 }

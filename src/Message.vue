@@ -136,7 +136,7 @@ export default {
 }
 
 .sc-message--text {
-  padding: 17px 20px;
+  padding: 10px 12px;
   border-radius: 6px;
   font-weight: 300;
   font-size: 14px;
