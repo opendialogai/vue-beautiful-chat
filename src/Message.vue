@@ -11,13 +11,15 @@
       <FileMessage v-else-if="message.type === 'file'" :data="message.data" :messageColors="determineMessageColors()" />
       <TypingMessage v-else-if="message.type === 'typing'" :messageColors="determineMessageColors()" />
       <SystemMessage v-else-if="message.type === 'system'" :data="message.data" :messageColors="determineMessageColors()" />
-      <ButtonMessage v-else-if="message.type === 'button'" :message="message" :data="message.data" :onButtonClick="onButtonClick" />
+      <ButtonMessage v-else-if="message.type === 'button'" :message="message" :data="message.data" :messageColors="determineMessageColors()" :onButtonClick="onButtonClick" />
       <FormMessage v-else-if="message.type === 'webchat_form'" :message="message" :data="message.data" :messageColors="determineMessageColors()" :onFormButtonClick="onFormButtonClick" />
+      <ImageMessage v-else-if="message.type === 'image'" :data="message.data" :messageColors="determineMessageColors()" />
     </div>
   </div>
 </template>
 
 <script>
+import ImageMessage from './ImageMessage.vue'
 import FormMessage from './FormMessage.vue'
 import ButtonMessage from './ButtonMessage.vue'
 import TextMessage from './TextMessage.vue'
@@ -35,6 +37,7 @@ export default {
     }
   },
   components: {
+    ImageMessage,
     FormMessage,
     ButtonMessage,
     TextMessage,
@@ -138,7 +141,7 @@ export default {
 .sc-message--text {
   padding: 10px 12px;
   border-radius: 6px;
-  font-weight: 300;
+  font-weight: 400;
   font-size: 14px;
   line-height: 1.4;
   white-space: pre-wrap;

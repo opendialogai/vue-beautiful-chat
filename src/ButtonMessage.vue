@@ -1,5 +1,5 @@
 <template>
-  <div class="sc-message--button">
+  <div class="sc-message--button" :style="messageColors">
     <p class="sc-message--button--text" v-linkified>
       <span v-html="data.text"></span>
     </p>
@@ -20,6 +20,10 @@ export default {
       required: true
     },
     message: {
+      type: Object,
+      required: true
+    },
+    messageColors: {
       type: Object,
       required: true
     },
@@ -68,7 +72,7 @@ export default {
 }
 
 .sc-message--button .sc-message--button--text {
-  font-weight: 300;
+  font-weight: 400;
   font-size: 14px;
   line-height: 1.4;
   white-space: pre-wrap;

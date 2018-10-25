@@ -22,7 +22,7 @@ export default {
 .sc-message--system {
   padding: 8px 20px;
   border-radius: 6px;
-  font-weight: 300;
+  font-weight: 400;
   font-size: 12px;
   line-height: 1.2;
   white-space: pre-wrap;

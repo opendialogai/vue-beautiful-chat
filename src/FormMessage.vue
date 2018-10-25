@@ -1,14 +1,14 @@
 <template>
-  <div class="sc-message--form">
+  <div class="sc-message--form" :style="messageColors">
     <div class="sc-message--form--text" v-html="data.text"></div>
     <div v-if="errors.length" class="sc-message--form--errors">
       <div v-for="error in errors">
-        {{ error }}
+        <span v-html="error"></span>
       </div>
     </div>
     <div v-for="element in data.elements" class="sc-message--form--element">
       <span class="sc-message--form--element-label">{{ element.display }}:</span>
-      <input class="sc-message--form--element-input" v-model="form.data[element.name].value" />
+      <input class="sc-message--form--element-input" v-model="form.data[element.name].value" v-on:keyup.enter="_handleClick" />
     </div>
     <button @click="_handleClick">{{ data.submit_text }}</button>
   </div>
@@ -75,7 +75,7 @@ export default {
 .sc-message--form {
   padding: 17px 20px;
   border-radius: 6px;
-  font-weight: 300;
+  font-weight: 400;
   font-size: 14px;
   line-height: 1.4;
   word-wrap: break-word;
@@ -100,13 +100,10 @@ export default {
 .sc-message--content.sent .sc-message--form {
   color: white;
   background-color: #4e8cff;
-  max-width: calc(100% - 120px);
-  word-wrap: break-word;
 }
 .sc-message--content.received .sc-message--form {
   color: #263238;
   background-color: #f4f7f9;
-  margin-right: 40px;
 }
 
 .sc-message--form .sc-message--form--text {
@@ -119,9 +116,13 @@ export default {
 
 .sc-message--form .sc-message--form--element-label {
   margin-right: 5px;
+  vertical-align: middle;
 }
 .sc-message--form .sc-message--form--element-input {
   font-size: 13px;
+  border-radius: 5px;
+  border: 1px solid #a9a9a9;
+  padding: 2px 7px;
 }
 
 .sc-message--form .sc-message--form--errors {

@@ -2,7 +2,7 @@
   <div class="sc-user-long-input--container">
     <div class="sc-user-long-input--message">
       <template v-if="showConfirmationMessage">
-        Are you sure you want to submit?
+        <span v-html="confirmationMessage"></span>
       </template>
       <template v-else>
         <span v-html="headerText"></span>
@@ -70,6 +70,10 @@ export default {
     placeholder: {
       type: String,
       default: 'Write a reply'
+    },
+    confirmationMessage: {
+      type: String,
+      default: 'Are you sure you want to submit?'
     },
     colors: {
       type: Object,
@@ -175,6 +179,7 @@ export default {
 
 .sc-user-long-input--message {
   padding: 25px 15px;
+  background-color: white;
 }
 
 .sc-user-long-input--text {
