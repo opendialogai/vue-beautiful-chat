@@ -21,9 +21,9 @@ export default {
 
 <style scoped>
 .sc-message--image {
-  padding: 17px 20px;
+  padding: 10px 12px;
   border-radius: 6px;
-  max-width: 100%;
+  max-width: calc(100% - 40px);
 }
 
 .sc-message--image img {

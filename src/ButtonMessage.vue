@@ -45,7 +45,7 @@ export default {
   background: #eaeaea;
   border-radius: 6px;
   padding: 0 12px;
-  max-width: 100%;
+  max-width: calc(100% - 40px);
 }
 
 .sc-message--button .sc-message--button--buttons {
@@ -56,7 +56,7 @@ export default {
   cursor: pointer;
   color: white;
   background-color: #4e8cff;
-  border-radius: 15px;
+  border-radius: 30px;
   border: none;
   font-size: 14px;
   padding: 12px 17px;

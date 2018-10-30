@@ -145,8 +145,8 @@ export default {
   bottom: 0;
   display: flex;
   background-color: #f4f7f9;
-  border-bottom-left-radius: 10px;
-  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 6px;
+  border-bottom-right-radius: 6px;
   transition: background-color .2s ease,box-shadow .2s ease;
 }
 
