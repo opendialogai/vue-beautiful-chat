@@ -1,7 +1,10 @@
 <template>
-  <div class="sc-header" :style="{background: colors.header.bg, color: colors.header.text}">
+  <div class="sc-header" @click="onClose" :style="{background: colors.header.bg, color: colors.header.text}">
     <img v-if="imageUrl" class="sc-header--img" :src="imageUrl" alt="" />
-    <div class="sc-header--team-name"> {{teamName}} </div>
+    <div class="sc-header--team-name">{{teamName}}</div>
+    <div class="sc-header--minimize-button">
+      <img src="./assets/down-arrow.svg" />
+    </div>
   </div>
 </template>
 <script>
@@ -34,6 +37,7 @@ export default {
   position: relative;
   box-sizing: border-box;
   display: flex;
+  cursor: pointer;
 }
 
 .sc-header--img {
@@ -47,32 +51,23 @@ export default {
   padding: 10px;
   flex: 1;
   user-select: none;
-  cursor: pointer;
-  border-radius: 5px;
 }
 
-.sc-header--team-name:hover {
-  box-shadow: 0px 2px 5px rgba(0.2, 0.2, 0.5, .1);
-}
-
-.sc-header--close-button {
+.sc-header--minimize-button {
   width: 40px;
   align-self: center;
   height: 40px;
   margin-right: 10px;
   box-sizing: border-box;
-  cursor: pointer;
-  border-radius: 5px;
 }
 
-.sc-header--close-button:hover {
-  box-shadow: 0px 2px 5px rgba(0.2, 0.2, 0.5, .1);
-}
-
-.sc-header--close-button img {
+.sc-header--minimize-button img {
   width: 100%;
   height: 100%;
-  padding: 13px;
+  padding: 10px;
   box-sizing: border-box;
+}
+.sc-chat-window.closed .sc-header--minimize-button img {
+  transform: rotate(180deg);
 }
 </style>

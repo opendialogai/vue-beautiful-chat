@@ -171,9 +171,10 @@ export default {
 }
 
 .sc-chat-window.closed {
-  opacity: 0;
-  visibility: hidden;
+  height: 75px;
   bottom: 90px;
+  overflow: hidden;
+  border-radius: 10px;
 }
 
 .sc-message--me {
