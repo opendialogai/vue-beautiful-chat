@@ -59,6 +59,7 @@ export default {
   height: 40px;
   margin-right: 10px;
   box-sizing: border-box;
+  display: none;
 }
 
 .sc-header--minimize-button img {
@@ -69,5 +70,11 @@ export default {
 }
 .sc-chat-window.closed .sc-header--minimize-button img {
   transform: rotate(180deg);
+}
+
+@media (max-width: 480px) {
+  .sc-header--minimize-button {
+    display: block;
+  }
 }
 </style>
