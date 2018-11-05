@@ -72,9 +72,4 @@ export default {
   transform: rotate(180deg);
 }
 
-@media (max-width: 480px) {
-  .sc-header--minimize-button {
-    display: block;
-  }
-}
 </style>
