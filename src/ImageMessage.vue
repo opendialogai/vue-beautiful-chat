@@ -1,6 +1,11 @@
 <template>
   <div class="sc-message--image" :style="messageColors">
-    <img :src="data.img_src" />
+    <template v-if="data.img_link">
+      <a :href="data.img_link"><img :src="data.img_src" /></a>
+    </template>
+    <template v-else>
+      <img :src="data.img_src" />
+    </template>
   </div>
 </template>
 
