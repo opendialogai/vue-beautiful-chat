@@ -3,13 +3,15 @@
     <div class="sc-message--content" :class="{
         sent: message.author === 'me',
         received: message.author === 'them',
-        system: message.type === 'system'
+        system: message.type === 'system',
+        read: message.type === 'read'
       }">
       <TextMessage v-if="message.type === 'text' || message.type === 'longtext_response'" :data="message.data" :messageColors="determineMessageColors()" />
       <LongTextMessage v-if="message.type === 'longtext'" :data="message.data" :messageColors="determineMessageColors()" />
       <EmojiMessage v-else-if="message.type === 'emoji'" :data="message.data" />
       <FileMessage v-else-if="message.type === 'file'" :data="message.data" :messageColors="determineMessageColors()" />
       <TypingMessage v-else-if="message.type === 'typing'" :messageColors="determineMessageColors()" />
+      <ReadMessage v-else-if="message.type === 'read'" :data="message.data" :messageColors="determineMessageColors()" />
       <SystemMessage v-else-if="message.type === 'system'" :data="message.data" :messageColors="determineMessageColors()" />
       <ButtonMessage v-else-if="message.type === 'button'" :message="message" :data="message.data" :messageColors="determineMessageColors()" :onButtonClick="onButtonClick" />
       <FormMessage v-else-if="message.type === 'webchat_form'" :message="message" :data="message.data" :messageColors="determineMessageColors()" :onFormButtonClick="onFormButtonClick" />
@@ -27,6 +29,7 @@ import LongTextMessage from './LongTextMessage.vue'
 import FileMessage from './FileMessage.vue'
 import EmojiMessage from './EmojiMessage.vue'
 import TypingMessage from './TypingMessage.vue'
+import ReadMessage from './ReadMessage.vue'
 import SystemMessage from './SystemMessage.vue'
 import chatIcon from './assets/chat-icon.svg'
 
@@ -45,6 +48,7 @@ export default {
     FileMessage,
     EmojiMessage,
     TypingMessage,
+    ReadMessage,
     SystemMessage
   },
   props: {
@@ -106,6 +110,10 @@ export default {
 }
 
 .sc-message--content.system {
+  justify-content: center;
+}
+
+.sc-message--content.read {
   justify-content: center;
 }
 
