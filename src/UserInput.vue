@@ -85,10 +85,13 @@ export default {
     },
     setInputActive (onoff) {
       this.inputActive = onoff;
+
+      // Emit events to the root component so that they can
+      // be caught by users of this package.
       if (onoff) {
-        this.$emit('vbc-user-typing');
+        this.$parent.$parent.$emit('vbc-user-typing');
       } else {
-        this.$emit('vbc-user-not-typing');
+        this.$parent.$parent.$emit('vbc-user-not-typing');
       }
     },
     handleKey (event) {
