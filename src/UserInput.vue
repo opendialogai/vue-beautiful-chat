@@ -84,7 +84,12 @@ export default {
       this.file = null
     },
     setInputActive (onoff) {
-      this.inputActive = onoff
+      this.inputActive = onoff;
+      if (onoff) {
+        this.$emit('vbc-user-typing');
+      } else {
+        this.$emit('vbc-user-not-typing');
+      }
     },
     handleKey (event) {
       if (event.keyCode === 13 && !event.shiftKey) {
