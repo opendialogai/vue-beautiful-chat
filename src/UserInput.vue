@@ -112,7 +112,6 @@ export default {
         }
       }
     },
-
     _submitText (event) {
       const text = this.$refs.userInput.textContent
       const file = this.file
