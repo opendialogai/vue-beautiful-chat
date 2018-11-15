@@ -8,6 +8,7 @@
       :onClose="close"
       :onButtonClick="onButtonClick"
       :onFormButtonClick="onFormButtonClick"
+      :onListButtonClick="onListButtonClick"
       :contentEditable="contentEditable"
       :showEmoji="showEmoji"
       :showFile="showFile"
@@ -107,6 +108,10 @@ export default {
       required: true
     },
     onFormButtonClick: {
+      type: Function,
+      required: true
+    },
+    onListButtonClick: {
       type: Function,
       required: true
     },

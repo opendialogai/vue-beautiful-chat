@@ -16,11 +16,13 @@
       <ButtonMessage v-else-if="message.type === 'button'" :message="message" :data="message.data" :messageColors="determineMessageColors()" :onButtonClick="onButtonClick" />
       <FormMessage v-else-if="message.type === 'webchat_form'" :message="message" :data="message.data" :messageColors="determineMessageColors()" :onFormButtonClick="onFormButtonClick" />
       <ImageMessage v-else-if="message.type === 'image'" :data="message.data" :messageColors="determineMessageColors()" />
+      <ListMessage v-else-if="message.type === 'list'" :message="message" :data="message.data" :messageColors="determineMessageColors()" :onButtonClick="onListButtonClick" />
     </div>
   </div>
 </template>
 
 <script>
+import ListMessage from './ListMessage.vue'
 import ImageMessage from './ImageMessage.vue'
 import FormMessage from './FormMessage.vue'
 import ButtonMessage from './ButtonMessage.vue'
@@ -40,6 +42,7 @@ export default {
     }
   },
   components: {
+    ListMessage,
     ImageMessage,
     FormMessage,
     ButtonMessage,
@@ -69,6 +72,10 @@ export default {
       required: true
     },
     onFormButtonClick: {
+      type: Function,
+      required: true
+    },
+    onListButtonClick: {
       type: Function,
       required: true
     }
