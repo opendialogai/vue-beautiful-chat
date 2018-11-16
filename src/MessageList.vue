@@ -7,12 +7,14 @@
              :key="message.id"
              :colors="colors"
              :onButtonClick="onButtonClick"
+             :onListButtonClick="onListButtonClick"
              :onFormButtonClick="onFormButtonClick" />
     <Message v-show="showTypingIndicator"
              :message="{author: 'them', type: 'typing'}"
              :chatImageUrl="chatImageUrl"
              :colors="colors"
              :onButtonClick="onButtonClick"
+             :onListButtonClick="onListButtonClick"
              :onFormButtonClick="onFormButtonClick" />
   </div>
 </template>
@@ -50,6 +52,10 @@ export default {
       required: true
     },
     onFormButtonClick: {
+      type: Function,
+      required: true
+    },
+    onListButtonClick: {
       type: Function,
       required: true
     }
