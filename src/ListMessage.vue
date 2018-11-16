@@ -12,7 +12,7 @@
         <template v-if="element.button.url">
           <a :href="element.button.url" :target="element.button.link_new_tab ? '_blank' : '_parent'">{{ element.button.text }}</a>
         </template>
-        <template v-else>
+        <template v-else-if="element.button.callback">
           <button @click="_handleClick(element.button.callback)">{{ element.button.text }}</button>
         </template>
       </div>
