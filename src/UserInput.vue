@@ -12,6 +12,7 @@
         @focus="setInputActive(true)"
         @blur="setInputActive(false)"
         @keydown="handleKey"
+        @input="onTextChange($event)"
         :contentEditable="contentEditable"
         :placeholder="placeholder"
         class="sc-user-input--text"
@@ -76,7 +77,8 @@ export default {
   data () {
     return {
       file: null,
-      inputActive: false
+      inputActive: false,
+      textEntered: false,
     }
   },
   methods: {
@@ -84,12 +86,30 @@ export default {
       this.file = null
     },
     setInputActive (onoff) {
-      this.inputActive = onoff
+      this.inputActive = onoff;
     },
     handleKey (event) {
       if (event.keyCode === 13 && !event.shiftKey) {
         this._submitText(event)
+        this.$parent.$parent.$emit('vbc-user-not-typing');
+        this.textEntered = false;
         event.preventDefault()
+      }
+    },
+    onTextChange(event) {
+      if (event.target.innerHTML === '' || event.target.innerHTML === '<br>') {
+        // Input is empty, turn off the typing indicator.
+        if (this.textEntered === true) {
+          this.$parent.$parent.$emit('vbc-user-not-typing');
+          this.textEntered = false;
+        }
+      } else {
+        // Input is not empty, turn on the typing indicator if
+        // it's not already.
+        if (this.textEntered === false) {
+          this.$parent.$parent.$emit('vbc-user-typing');
+          this.textEntered = true;
+        }
       }
     },
     _submitText (event) {

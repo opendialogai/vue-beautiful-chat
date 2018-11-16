@@ -1,7 +1,21 @@
 <template>
   <div class="sc-message-list" ref="scrollList" :style="{backgroundColor: colors.messageList.bg}">
-    <Message v-for="(message, idx) in messages" :message="message" :chatImageUrl="chatImageUrl" :key="message.id" :colors="colors" :onButtonClick="onButtonClick" :onFormButtonClick="onFormButtonClick" :onListButtonClick="onListButtonClick" />
-    <Message v-show="showTypingIndicator" :message="{author: 'them', type: 'typing'}" :chatImageUrl="chatImageUrl" :colors="colors" :onButtonClick="onButtonClick" :onFormButtonClick="onFormButtonClick" :onListButtonClick="onListButtonClick" />
+    <Message v-for="(message, idx) in messages"
+             :message="message"
+             :read="message.read"
+             :chatImageUrl="chatImageUrl"
+             :key="message.id"
+             :colors="colors"
+             :onButtonClick="onButtonClick"
+             :onListButtonClick="onListButtonClick"
+             :onFormButtonClick="onFormButtonClick" />
+    <Message v-show="showTypingIndicator"
+             :message="{author: 'them', type: 'typing'}"
+             :chatImageUrl="chatImageUrl"
+             :colors="colors"
+             :onButtonClick="onButtonClick"
+             :onListButtonClick="onListButtonClick"
+             :onFormButtonClick="onFormButtonClick" />
   </div>
 </template>
 <script>

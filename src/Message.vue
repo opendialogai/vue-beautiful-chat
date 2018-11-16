@@ -4,20 +4,19 @@
         sent: message.author === 'me',
         received: message.author === 'them',
         system: message.type === 'system',
-        read: message.type === 'read'
       }">
       <TextMessage v-if="message.type === 'text' || message.type === 'longtext_response'" :data="message.data" :messageColors="determineMessageColors()" />
       <LongTextMessage v-if="message.type === 'longtext'" :data="message.data" :messageColors="determineMessageColors()" />
       <EmojiMessage v-else-if="message.type === 'emoji'" :data="message.data" />
       <FileMessage v-else-if="message.type === 'file'" :data="message.data" :messageColors="determineMessageColors()" />
       <TypingMessage v-else-if="message.type === 'typing'" :messageColors="determineMessageColors()" />
-      <ReadMessage v-else-if="message.type === 'read'" :data="message.data" :messageColors="determineMessageColors()" />
       <SystemMessage v-else-if="message.type === 'system'" :data="message.data" :messageColors="determineMessageColors()" />
       <ButtonMessage v-else-if="message.type === 'button'" :message="message" :data="message.data" :messageColors="determineMessageColors()" :onButtonClick="onButtonClick" />
       <FormMessage v-else-if="message.type === 'webchat_form'" :message="message" :data="message.data" :messageColors="determineMessageColors()" :onFormButtonClick="onFormButtonClick" />
       <ImageMessage v-else-if="message.type === 'image'" :data="message.data" :messageColors="determineMessageColors()" />
       <ListMessage v-else-if="message.type === 'list'" :message="message" :data="message.data" :messageColors="determineMessageColors()" :onButtonClick="onListButtonClick" />
     </div>
+    <span v-if="read" class="sc-message--read">Read</span>
   </div>
 </template>
 
@@ -31,7 +30,6 @@ import LongTextMessage from './LongTextMessage.vue'
 import FileMessage from './FileMessage.vue'
 import EmojiMessage from './EmojiMessage.vue'
 import TypingMessage from './TypingMessage.vue'
-import ReadMessage from './ReadMessage.vue'
 import SystemMessage from './SystemMessage.vue'
 import chatIcon from './assets/chat-icon.svg'
 
@@ -51,8 +49,7 @@ export default {
     FileMessage,
     EmojiMessage,
     TypingMessage,
-    ReadMessage,
-    SystemMessage
+    SystemMessage,
   },
   props: {
     message: {
@@ -78,6 +75,9 @@ export default {
     onListButtonClick: {
       type: Function,
       required: true
+    },
+    read: {
+      type: Boolean,
     }
   },
   methods: {
@@ -105,6 +105,7 @@ export default {
   margin: auto;
   padding-bottom: 10px;
   display: flex;
+  flex-direction: column;
 }
 
 .sc-message--content {
@@ -114,6 +115,13 @@ export default {
 
 .sc-message--content.sent {
   justify-content: flex-end;
+}
+
+.sc-message--read {
+  font-size: x-small;
+  margin-bottom: -5px;
+  color: gray;
+  text-align: right;
 }
 
 .sc-message--content.system {
