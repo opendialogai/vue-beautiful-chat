@@ -72,6 +72,9 @@ export default {
   },
   mounted () {
     this._scrollDown()
+    this.$root.$on('scroll-down-message-list', () => {
+      this._scrollDown()
+    })
   },
   updated () {
     if (this.shouldScrollToBottom())
