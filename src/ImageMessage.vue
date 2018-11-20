@@ -1,10 +1,10 @@
 <template>
   <div class="sc-message--image" :style="messageColors">
     <template v-if="data.img_link">
-      <a :href="data.img_link" :target="data.link_new_tab ? '_blank' : '_parent'"><img :src="data.img_src" /></a>
+      <a :href="data.img_link" :target="data.link_new_tab ? '_blank' : '_parent'"><img :src="data.img_src" @load="loaded" /></a>
     </template>
     <template v-else>
-      <img :src="data.img_src" />
+      <img :src="data.img_src" @load="loaded" />
     </template>
   </div>
 </template>
@@ -20,6 +20,11 @@ export default {
       type: Object,
       required: true
     }
+  },
+  methods: {
+    loaded() {
+      this.$root.$emit('scroll-down-message-list')   
+    }
   }
 }
 </script>
@@ -33,6 +38,7 @@ export default {
 
 .sc-message--image img {
   max-width: 100%;
+  float: left;
 }
 
 .sc-message--content.sent .sc-message--image {
