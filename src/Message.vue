@@ -1,5 +1,6 @@
 <template>
   <div class="sc-message">
+    <span v-if="message.author != 'me' && authorName" class="sc-message--name">{{ authorName }}</span>
     <div class="sc-message--content" :class="{
         sent: message.author === 'me',
         received: message.author === 'them',
@@ -34,9 +35,9 @@ import SystemMessage from './SystemMessage.vue'
 import chatIcon from './assets/chat-icon.svg'
 
 export default {
-  data () {
+  data() {
     return {
-
+      authorName: null,
     }
   },
   components: {
@@ -80,6 +81,15 @@ export default {
       type: Boolean,
     }
   },
+  created() {
+    if (this.message.type == 'chat_open') return;
+
+    if (this.message.user &&
+        this.message.user.name &&
+        this.message.user.name.length) {
+      this.authorName = this.message.user.name;
+    }
+  },
   methods: {
     sentColorsStyle() {
       return {
@@ -115,6 +125,13 @@ export default {
 
 .sc-message--content.sent {
   justify-content: flex-end;
+}
+
+.sc-message--name {
+  font-size: x-small;
+  margin-top: -5px;
+  color: gray;
+  text-align: left;
 }
 
 .sc-message--read {
