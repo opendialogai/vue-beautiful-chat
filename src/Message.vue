@@ -17,7 +17,10 @@
       <ImageMessage v-else-if="message.type === 'image'" :data="message.data" :messageColors="determineMessageColors()" />
       <ListMessage v-else-if="message.type === 'list'" :message="message" :data="message.data" :messageColors="determineMessageColors()" :onButtonClick="onListButtonClick" />
     </div>
-    <span v-if="read" class="sc-message--read">Read</span>
+    <span class="sc-message--time-read">
+      <template v-if="message.data.time">{{ message.data.time }}</template>
+      <template v-if="read"> - Read</template>
+    </span>
   </div>
 </template>
 
@@ -134,10 +137,12 @@ export default {
   text-align: left;
 }
 
-.sc-message--read {
+.sc-message--time-read {
   font-size: x-small;
   margin-bottom: -5px;
   color: gray;
+}
+.sc-message--content.sent + .sc-message--time-read {
   text-align: right;
 }
 
