@@ -16,8 +16,9 @@
       <FormMessage v-else-if="message.type === 'webchat_form'" :message="message" :data="message.data" :messageColors="determineMessageColors()" :onFormButtonClick="onFormButtonClick" />
       <ImageMessage v-else-if="message.type === 'image'" :data="message.data" :messageColors="determineMessageColors()" />
       <ListMessage v-else-if="message.type === 'list'" :message="message" :data="message.data" :messageColors="determineMessageColors()" :onButtonClick="onListButtonClick" />
+      <DatetimeFakeMessage v-else-if="message.type === 'datetime'" :message="message" />
     </div>
-    <span class="sc-message--time-read">
+    <span v-if="message.type !== 'datetime'" class="sc-message--time-read">
       <template v-if="message.data.time">{{ message.data.time }}</template>
       <template v-if="read"> - Read</template>
     </span>
@@ -25,6 +26,7 @@
 </template>
 
 <script>
+import DatetimeFakeMessage from './DatetimeFakeMessage.vue'
 import ListMessage from './ListMessage.vue'
 import ImageMessage from './ImageMessage.vue'
 import FormMessage from './FormMessage.vue'
@@ -44,6 +46,7 @@ export default {
     }
   },
   components: {
+    DatetimeFakeMessage,
     ListMessage,
     ImageMessage,
     FormMessage,
