@@ -67,10 +67,6 @@ export default {
       type: Array,
       default: () => []
     },
-    newMessagesCount: {
-      type: Number,
-      default: () => 0
-    },
     placeholder: {
       type: String,
       default: 'Write a reply'
