@@ -41,7 +41,6 @@ export default {
 }
 
 .sc-header--img {
-  border-radius: 50%;
   align-self: center;
   padding: 10px;
 }
