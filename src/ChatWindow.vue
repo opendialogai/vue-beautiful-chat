@@ -1,9 +1,10 @@
 <template>
-  <div class="sc-chat-window" :class="{opened: isOpen, closed: !isOpen}">
+  <div class="sc-chat-window" :class="{opened: isOpen, closed: !isOpen, expanded: isExpand}">
     <Header
       :teamName="agentProfile.teamName"
       :imageUrl="agentProfile.imageUrl"
       :onClose="onClose"
+      :onExpand="onExpand"
       :colors="colors"
     />
     <MessageList
@@ -79,6 +80,10 @@ export default {
       type: Function,
       required: true
     },
+    onExpand: {
+      type: Function,
+      required: true
+    },
     onButtonClick: {
       type: Function,
       required: true
@@ -96,6 +101,10 @@ export default {
       default: () => []
     },
     isOpen: {
+      type: Boolean,
+      default: () => false
+    },
+    isExpand: {
       type: Boolean,
       default: () => false
     },

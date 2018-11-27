@@ -5,7 +5,9 @@
       :onUserInputSubmit="onMessageWasSent"
       :agentProfile="agentProfile"
       :isOpen="isOpen"
+      :isExpand="isExpand"
       :onClose="close"
+      :onExpand="expand"
       :onButtonClick="onButtonClick"
       :onFormButtonClick="onFormButtonClick"
       :onListButtonClick="onListButtonClick"
@@ -43,11 +45,19 @@ export default {
       type: Boolean,
       required: true
     },
+    isExpand: {
+      type: Boolean,
+      required: true
+    },
     open: {
       type: Function,
       required: true
     },
     close: {
+      type: Function,
+      required: true
+    },
+    expand: {
       type: Function,
       required: true
     },
