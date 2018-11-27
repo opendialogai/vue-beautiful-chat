@@ -16,7 +16,7 @@ const Plugin = {
     this.installed = true
     this.event = new Vue()
     this.dynamicContainer = null
-    this.componentName = (options) ? options.componentName : defaultComponentName
+    this.componentName = (options && options.componentName) ? options.componentName : defaultComponentName
     /**
      * Plugin API
      */
