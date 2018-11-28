@@ -2,6 +2,7 @@
   <div class="sc-message">
     <span v-if="message.author != 'me' && authorName" class="sc-message--name">{{ authorName }}</span>
     <div class="sc-message--content" :class="{
+        internal: message.data && message.data.internal,
         sent: message.author === 'me',
         received: message.author === 'them',
         system: message.type === 'system',
@@ -18,8 +19,8 @@
       <ListMessage v-else-if="message.type === 'list'" :message="message" :data="message.data" :messageColors="determineMessageColors()" :onButtonClick="onListButtonClick" />
       <DatetimeFakeMessage v-else-if="message.type === 'datetime'" :message="message" />
     </div>
-    <span v-if="message.type !== 'datetime'" class="sc-message--time-read">
-      <template v-if="message.data.time">{{ message.data.time }}</template>
+    <span v-if="message.type !== 'datetime' && message.type !== 'typing'" class="sc-message--time-read">
+      <template v-if="message.data && message.data.time && !message.data.hidetime">{{ message.data.time }}</template>
       <template v-if="read"> - Read</template>
     </span>
   </div>
