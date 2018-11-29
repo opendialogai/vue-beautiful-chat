@@ -21,7 +21,6 @@
       >
       </div>
       <div class="sc-user-input--buttons">
-        <div class="sc-user-input--button"></div>
         <div v-if="showEmoji" class="sc-user-input--button">
           <EmojiIcon :onEmojiPicked="_handleEmojiPicked" :color="colors.userInput.text" />
         </div>
@@ -208,13 +207,9 @@ export default {
 .sc-user-input--buttons {
   width: 100px;
   position: absolute;
-  right: 30px;
+  right: 25px;
   height: 100%;
   display: flex;
-}
-
-.sc-user-input--button:first-of-type {
-  width: 40px;
 }
 
 .sc-user-input--button {
