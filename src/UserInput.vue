@@ -86,6 +86,12 @@ export default {
     },
     setInputActive (onoff) {
       this.inputActive = onoff;
+
+      if (onoff) {
+        this.$parent.$parent.$emit('vbc-user-input-focus');
+      } else {
+        this.$parent.$parent.$emit('vbc-user-input-blur');
+      }
     },
     handleKey (event) {
       if (event.keyCode === 13 && !event.shiftKey) {
