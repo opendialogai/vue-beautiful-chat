@@ -23,7 +23,7 @@ export default {
   },
   methods: {
     loaded() {
-      this.$root.$emit('scroll-down-message-list')   
+      this.$root.$emit('scroll-down-message-list')
     }
   }
 }

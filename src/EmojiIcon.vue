@@ -1,6 +1,6 @@
 <template>
   <div class="sc-user-input--picker-wrapper">
-      <EmojiPicker 
+      <EmojiPicker
         v-if="isActive"
         :onEmojiPicked="onEmojiPicked"
         :onBlur="_handlePickerBlur"

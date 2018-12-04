@@ -128,7 +128,7 @@ export default {
     colors: {
       type: Object,
       required: false,
-      validator: c => 
+      validator: c =>
         'header' in c
         && 'bg' in c.header && 'text' in c.header
         && 'launcher' in c
