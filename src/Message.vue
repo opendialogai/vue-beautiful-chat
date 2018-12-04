@@ -14,6 +14,7 @@
       <TypingMessage v-else-if="message.type === 'typing'" :messageColors="determineMessageColors()" />
       <SystemMessage v-else-if="message.type === 'system'" :data="message.data" :messageColors="determineMessageColors()" />
       <ButtonMessage v-else-if="message.type === 'button'" :message="message" :data="message.data" :messageColors="determineMessageColors()" :onButtonClick="onButtonClick" />
+      <ButtonResponseMessage v-else-if="message.type === 'button_response'" :data="message.data" :messageColors="determineMessageColors()" />
       <FormMessage v-else-if="message.type === 'webchat_form'" :message="message" :data="message.data" :messageColors="determineMessageColors()" :onFormButtonClick="onFormButtonClick" />
       <ImageMessage v-else-if="message.type === 'image'" :data="message.data" :messageColors="determineMessageColors()" />
       <ListMessage v-else-if="message.type === 'list'" :message="message" :data="message.data" :messageColors="determineMessageColors()" :onButtonClick="onListButtonClick" />
@@ -32,6 +33,7 @@ import ListMessage from './ListMessage.vue'
 import ImageMessage from './ImageMessage.vue'
 import FormMessage from './FormMessage.vue'
 import ButtonMessage from './ButtonMessage.vue'
+import ButtonResponseMessage from './ButtonResponseMessage.vue'
 import TextMessage from './TextMessage.vue'
 import LongTextMessage from './LongTextMessage.vue'
 import FileMessage from './FileMessage.vue'
@@ -52,6 +54,7 @@ export default {
     ImageMessage,
     FormMessage,
     ButtonMessage,
+    ButtonResponseMessage,
     TextMessage,
     LongTextMessage,
     FileMessage,
