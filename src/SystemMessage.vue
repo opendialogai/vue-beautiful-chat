@@ -29,6 +29,7 @@ export default {
   -webkit-font-smoothing: subpixel-antialiased;
   font-style: italic;
   opacity: .55;
+  margin: auto;
 }
 
 .sc-message--meta {
