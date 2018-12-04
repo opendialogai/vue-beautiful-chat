@@ -19,7 +19,7 @@
       <ListMessage v-else-if="message.type === 'list'" :message="message" :data="message.data" :messageColors="determineMessageColors()" :onButtonClick="onListButtonClick" />
       <DatetimeFakeMessage v-else-if="message.type === 'datetime'" :message="message" />
     </div>
-    <span v-if="message.type !== 'datetime' && message.type !== 'typing'" class="sc-message--time-read">
+    <span v-if="message.type !== 'datetime' && message.type !== 'typing' && message.type !== 'system'" class="sc-message--time-read">
       <template v-if="message.data && message.data.time && !message.data.hidetime">{{ message.data.time }}</template>
       <template v-if="read"> - Read</template>
     </span>
