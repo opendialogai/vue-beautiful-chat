@@ -1,5 +1,8 @@
 <template>
   <div class="sc-header" @click="onClose" :style="{background: colors.header.bg, color: colors.header.text}">
+    <div @click.stop="onExpand" class="sc-header--expand-button">
+      <img src="./assets/pop_out.svg" />
+    </div>
     <img v-if="imageUrl" class="sc-header--img" :src="imageUrl" alt="" />
     <div class="sc-header--team-name">{{teamName}}</div>
     <div class="sc-header--minimize-button">
@@ -17,6 +20,10 @@ export default {
       type: String
     },
     onClose: {
+      type: Function,
+      required: true
+    },
+    onExpand: {
       type: Function,
       required: true
     },
@@ -41,7 +48,6 @@ export default {
 }
 
 .sc-header--img {
-  border-radius: 50%;
   align-self: center;
   padding: 10px;
 }
@@ -51,6 +57,25 @@ export default {
   padding: 10px;
   flex: 1;
   user-select: none;
+}
+
+.sc-header--expand-button {
+  width: 40px;
+  align-self: center;
+  height: 40px;
+  margin-right: 10px;
+  box-sizing: border-box;
+  display: none;
+}
+
+.sc-header--expand-button img {
+  width: 100%;
+  height: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+}
+.sc-chat-window.expanded .sc-header--expand-button img {
+  transform: rotate(180deg);
 }
 
 .sc-header--minimize-button {

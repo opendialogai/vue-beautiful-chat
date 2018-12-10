@@ -1,8 +1,8 @@
 <template>
   <div class="sc-typing-indicator" :style="messageColors">
-    <span></span>
-    <span></span>
-    <span></span>
+    <span :style="{'background-color': messageColors.color}"></span>
+    <span :style="{'background-color': messageColors.color}"></span>
+    <span :style="{'background-color': messageColors.color}"></span>
   </div>
 </template>
 <script>
@@ -24,7 +24,6 @@ export default {
 
 .sc-typing-indicator span {
   display: inline-block;
-  background-color: #B6B5BA;
   width: 10px;
   height: 10px;
   border-radius: 100%;
@@ -46,11 +45,9 @@ export default {
 @keyframes bob {
   10% {
     transform: translateY(-10px);
-    background-color: #9E9DA2;
   }
   50% {
     transform: translateY(0);
-    background-color: #B6B5BA;
   }
 }
 </style>

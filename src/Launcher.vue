@@ -5,9 +5,12 @@
       :onUserInputSubmit="onMessageWasSent"
       :agentProfile="agentProfile"
       :isOpen="isOpen"
+      :isExpand="isExpand"
       :onClose="close"
+      :onExpand="expand"
       :onButtonClick="onButtonClick"
       :onFormButtonClick="onFormButtonClick"
+      :onListButtonClick="onListButtonClick"
       :contentEditable="contentEditable"
       :showEmoji="showEmoji"
       :showFile="showFile"
@@ -42,11 +45,19 @@ export default {
       type: Boolean,
       required: true
     },
+    isExpand: {
+      type: Boolean,
+      required: true
+    },
     open: {
       type: Function,
       required: true
     },
     close: {
+      type: Function,
+      required: true
+    },
+    expand: {
       type: Function,
       required: true
     },
@@ -65,10 +76,6 @@ export default {
     messageList: {
       type: Array,
       default: () => []
-    },
-    newMessagesCount: {
-      type: Number,
-      default: () => 0
     },
     placeholder: {
       type: String,
@@ -110,6 +117,10 @@ export default {
       type: Function,
       required: true
     },
+    onListButtonClick: {
+      type: Function,
+      required: true
+    },
     initialText: {
        type: String,
        default: null
@@ -117,7 +128,7 @@ export default {
     colors: {
       type: Object,
       required: false,
-      validator: c => 
+      validator: c =>
         'header' in c
         && 'bg' in c.header && 'text' in c.header
         && 'launcher' in c

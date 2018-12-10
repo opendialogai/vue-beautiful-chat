@@ -1,7 +1,21 @@
 <template>
   <div class="sc-message-list" ref="scrollList" :style="{backgroundColor: colors.messageList.bg}">
-    <Message v-for="(message, idx) in messages" :message="message" :chatImageUrl="chatImageUrl" :key="idx" :colors="colors" :onButtonClick="onButtonClick" :onFormButtonClick="onFormButtonClick" />
-    <Message v-show="showTypingIndicator" :message="{author: 'them', type: 'typing'}" :chatImageUrl="chatImageUrl" :colors="colors" :onButtonClick="onButtonClick" :onFormButtonClick="onFormButtonClick" />
+    <Message v-for="(message, idx) in messages"
+             :message="message"
+             :read="message.read"
+             :chatImageUrl="chatImageUrl"
+             :key="message.id"
+             :colors="colors"
+             :onButtonClick="onButtonClick"
+             :onListButtonClick="onListButtonClick"
+             :onFormButtonClick="onFormButtonClick" />
+    <Message v-show="showTypingIndicator"
+             :message="{author: 'them', type: 'typing'}"
+             :chatImageUrl="chatImageUrl"
+             :colors="colors"
+             :onButtonClick="onButtonClick"
+             :onListButtonClick="onListButtonClick"
+             :onFormButtonClick="onFormButtonClick" />
   </div>
 </template>
 <script>
@@ -40,6 +54,10 @@ export default {
     onFormButtonClick: {
       type: Function,
       required: true
+    },
+    onListButtonClick: {
+      type: Function,
+      required: true
     }
   },
   methods: {
@@ -54,6 +72,9 @@ export default {
   },
   mounted () {
     this._scrollDown()
+    this.$root.$on('scroll-down-message-list', () => {
+      this._scrollDown()
+    })
   },
   updated () {
     if (this.shouldScrollToBottom())

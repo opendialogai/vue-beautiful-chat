@@ -1,9 +1,11 @@
 <template>
   <div class="sc-message">
+    <span v-if="message.author != 'me' && authorName" class="sc-message--name">{{ authorName }}</span>
     <div class="sc-message--content" :class="{
+        internal: message.data && message.data.internal,
         sent: message.author === 'me',
         received: message.author === 'them',
-        system: message.type === 'system'
+        system: message.type === 'system',
       }">
       <TextMessage v-if="message.type === 'text' || message.type === 'longtext_response'" :data="message.data" :messageColors="determineMessageColors()" />
       <LongTextMessage v-if="message.type === 'longtext'" :data="message.data" :messageColors="determineMessageColors()" />
@@ -12,16 +14,26 @@
       <TypingMessage v-else-if="message.type === 'typing'" :messageColors="determineMessageColors()" />
       <SystemMessage v-else-if="message.type === 'system'" :data="message.data" :messageColors="determineMessageColors()" />
       <ButtonMessage v-else-if="message.type === 'button'" :message="message" :data="message.data" :messageColors="determineMessageColors()" :onButtonClick="onButtonClick" />
+      <ButtonResponseMessage v-else-if="message.type === 'button_response'" :data="message.data" :messageColors="determineMessageColors()" />
       <FormMessage v-else-if="message.type === 'webchat_form'" :message="message" :data="message.data" :messageColors="determineMessageColors()" :onFormButtonClick="onFormButtonClick" />
       <ImageMessage v-else-if="message.type === 'image'" :data="message.data" :messageColors="determineMessageColors()" />
+      <ListMessage v-else-if="message.type === 'list'" :message="message" :data="message.data" :messageColors="determineMessageColors()" :onButtonClick="onListButtonClick" />
+      <DatetimeFakeMessage v-else-if="message.type === 'datetime'" :message="message" />
     </div>
+    <span v-if="message.type !== 'datetime' && message.type !== 'typing' && message.type !== 'system'" class="sc-message--time-read">
+      <template v-if="message.data && message.data.time && !message.data.hidetime">{{ message.data.time }}</template>
+      <template v-if="read"> - Read</template>
+    </span>
   </div>
 </template>
 
 <script>
+import DatetimeFakeMessage from './DatetimeFakeMessage.vue'
+import ListMessage from './ListMessage.vue'
 import ImageMessage from './ImageMessage.vue'
 import FormMessage from './FormMessage.vue'
 import ButtonMessage from './ButtonMessage.vue'
+import ButtonResponseMessage from './ButtonResponseMessage.vue'
 import TextMessage from './TextMessage.vue'
 import LongTextMessage from './LongTextMessage.vue'
 import FileMessage from './FileMessage.vue'
@@ -31,21 +43,24 @@ import SystemMessage from './SystemMessage.vue'
 import chatIcon from './assets/chat-icon.svg'
 
 export default {
-  data () {
+  data() {
     return {
-
+      authorName: null,
     }
   },
   components: {
+    DatetimeFakeMessage,
+    ListMessage,
     ImageMessage,
     FormMessage,
     ButtonMessage,
+    ButtonResponseMessage,
     TextMessage,
     LongTextMessage,
     FileMessage,
     EmojiMessage,
     TypingMessage,
-    SystemMessage
+    SystemMessage,
   },
   props: {
     message: {
@@ -67,6 +82,22 @@ export default {
     onFormButtonClick: {
       type: Function,
       required: true
+    },
+    onListButtonClick: {
+      type: Function,
+      required: true
+    },
+    read: {
+      type: Boolean,
+    }
+  },
+  created() {
+    if (this.message.type == 'chat_open') return;
+
+    if (this.message.user &&
+        this.message.user.name &&
+        this.message.user.name.length) {
+      this.authorName = this.message.user.name;
     }
   },
   methods: {
@@ -94,6 +125,7 @@ export default {
   margin: auto;
   padding-bottom: 10px;
   display: flex;
+  flex-direction: column;
 }
 
 .sc-message--content {
@@ -105,7 +137,27 @@ export default {
   justify-content: flex-end;
 }
 
+.sc-message--name {
+  font-size: x-small;
+  margin-top: -5px;
+  color: gray;
+  text-align: right;
+}
+
+.sc-message--time-read {
+  font-size: x-small;
+  margin-bottom: -5px;
+  color: gray;
+}
+.sc-message--content.sent + .sc-message--time-read {
+  text-align: right;
+}
+
 .sc-message--content.system {
+  justify-content: center;
+}
+
+.sc-message--content.read {
   justify-content: center;
 }
 

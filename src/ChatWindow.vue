@@ -1,9 +1,10 @@
 <template>
-  <div class="sc-chat-window" :class="{opened: isOpen, closed: !isOpen}">
+  <div class="sc-chat-window" :class="{opened: isOpen, closed: !isOpen, expanded: isExpand}">
     <Header
       :teamName="agentProfile.teamName"
       :imageUrl="agentProfile.imageUrl"
       :onClose="onClose"
+      :onExpand="onExpand"
       :colors="colors"
     />
     <MessageList
@@ -16,6 +17,7 @@
       :alwaysScrollToBottom="alwaysScrollToBottom"
       :onButtonClick="onButtonClick"
       :onFormButtonClick="onFormButtonClick"
+      :onListButtonClick="onListButtonClick"
     />
     <template v-if="!showLongTextInput">
       <UserInput
@@ -78,6 +80,10 @@ export default {
       type: Function,
       required: true
     },
+    onExpand: {
+      type: Function,
+      required: true
+    },
     onButtonClick: {
       type: Function,
       required: true
@@ -86,11 +92,19 @@ export default {
       type: Function,
       required: true
     },
+    onListButtonClick: {
+      type: Function,
+      required: true
+    },
     messageList: {
       type: Array,
       default: () => []
     },
     isOpen: {
+      type: Boolean,
+      default: () => false
+    },
+    isExpand: {
       type: Boolean,
       default: () => false
     },

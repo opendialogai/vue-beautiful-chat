@@ -1,5 +1,5 @@
 <template>
-  <div class="sc-message--text" :style="messageColors" v-linkified>
+  <div class="sc-message--text" :style="messageColors" v-linkified:options="{ format: function (value, type) { return '<span>' + value + '</span>'; } }">
     <span v-html="data.text"></span>
     <p v-if="data.meta" class='sc-message--meta' :style="{color: messageColors.color}">{{data.meta}}</p>
   </div>
