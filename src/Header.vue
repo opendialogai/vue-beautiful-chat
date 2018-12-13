@@ -1,6 +1,6 @@
 <template>
   <div class="sc-header" @click="onClose" :style="{background: colors.header.bg, color: colors.header.text}">
-    <div @click.stop="onExpand" class="sc-header--expand-button">
+    <div v-if="showExpandButton" @click.stop="onExpand" class="sc-header--expand-button">
       <img src="./assets/pop_out.svg" />
     </div>
     <img v-if="imageUrl" class="sc-header--img" :src="imageUrl" alt="" />
@@ -26,6 +26,10 @@ export default {
     onExpand: {
       type: Function,
       required: true
+    },
+    showExpandButton: {
+      type: Boolean,
+      default: true
     },
     colors: {
       type: Object,

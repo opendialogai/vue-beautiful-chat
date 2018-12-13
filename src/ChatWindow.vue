@@ -5,6 +5,7 @@
       :imageUrl="agentProfile.imageUrl"
       :onClose="onClose"
       :onExpand="onExpand"
+      :showExpandButton="showExpandButton"
       :colors="colors"
     />
     <MessageList
@@ -67,6 +68,10 @@ export default {
     showFile: {
       type: Boolean,
       default: false
+    },
+    showExpandButton: {
+      type: Boolean,
+      default: true
     },
     agentProfile: {
       type: Object,
