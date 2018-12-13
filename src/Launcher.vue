@@ -14,6 +14,7 @@
       :contentEditable="contentEditable"
       :showEmoji="showEmoji"
       :showFile="showFile"
+      :showExpandButton="showExpandButton"
       :placeholder="placeholder"
       :showTypingIndicator="showTypingIndicator"
       :colors="colors"
@@ -64,6 +65,10 @@ export default {
     showFile: {
       type: Boolean,
       default: false
+    },
+    showExpandButton: {
+      type: Boolean,
+      default: true
     },
     agentProfile: {
       type: Object,
