@@ -1,8 +1,9 @@
 <template>
   <div class="sc-header" @click="onClose" :style="{background: colors.header.bg, color: colors.header.text}">
-    <div v-if="showExpandButton" @click.stop="onExpand" class="sc-header--expand-button">
-      <img src="./assets/pop_out.svg" />
+    <div v-if="showExpandButton" class="sc-header--expand-button">
+      <img @click.stop="onExpand" src="./assets/pop_out.svg" />
     </div>
+    <div v-else class="sc-header--expand-button" ></div>
     <img v-if="imageUrl" class="sc-header--img" :src="imageUrl" alt="" />
     <div class="sc-header--team-name">{{teamName}}</div>
     <div class="sc-header--minimize-button">
