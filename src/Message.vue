@@ -141,7 +141,7 @@ export default {
   font-size: x-small;
   margin-top: -5px;
   color: gray;
-  text-align: right;
+  text-align: left;
 }
 
 .sc-message--time-read {
