@@ -7,7 +7,7 @@
         received: message.author === 'them',
         system: message.type === 'system',
       }">
-      <TextMessage v-if="message.type === 'text' || message.type === 'longtext_response'" :data="message.data" :messageColors="determineMessageColors()" />
+      <TextMessage v-if="message.type === 'text' || message.type === 'longtext_response'" :data="message.data" :messageColors="determineMessageColors()" :onLinkClick="onLinkClick" />
       <LongTextMessage v-if="message.type === 'longtext'" :data="message.data" :messageColors="determineMessageColors()" />
       <EmojiMessage v-else-if="message.type === 'emoji'" :data="message.data" />
       <FileMessage v-else-if="message.type === 'file'" :data="message.data" :messageColors="determineMessageColors()" />
@@ -84,6 +84,10 @@ export default {
       required: true
     },
     onListButtonClick: {
+      type: Function,
+      required: true
+    },
+    onLinkClick: {
       type: Function,
       required: true
     },

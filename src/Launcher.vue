@@ -11,6 +11,7 @@
       :onButtonClick="onButtonClick"
       :onFormButtonClick="onFormButtonClick"
       :onListButtonClick="onListButtonClick"
+      :onLinkClick="onLinkClick"
       :contentEditable="contentEditable"
       :showEmoji="showEmoji"
       :showFile="showFile"
@@ -123,6 +124,10 @@ export default {
       required: true
     },
     onListButtonClick: {
+      type: Function,
+      required: true
+    },
+    onLinkClick: {
       type: Function,
       required: true
     },
