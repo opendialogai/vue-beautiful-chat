@@ -7,8 +7,21 @@
       </div>
     </div>
     <div v-for="element in data.elements" class="sc-message--form--element">
-      <span class="sc-message--form--element-label">{{ element.display }}:</span>
-      <input class="sc-message--form--element-input" v-model="form.data[element.name].value" v-on:keyup.enter="_handleClick" />
+      <span v-if="element.display" class="sc-message--form--element-label">{{ element.display }}:</span>
+
+      <template v-if="element.element_type == 'text'">
+        <input class="sc-message--form--element-input" v-model="form.data[element.name].value" v-on:keyup.enter="_handleClick" />
+      </template>
+      <template v-if="element.element_type == 'textarea'">
+        <textarea class="sc-message--form--element-textarea" v-model="form.data[element.name].value" />
+      </template>
+      <template v-if="element.element_type == 'select'">
+        <select class="sc-message--form--element-select" v-model="form.data[element.name].value">
+          <option v-for="(option_text, option_value) in element.options" v-bind:value="option_value">
+            {{ option_text }}
+          </option>
+        </select>
+      </template>
     </div>
     <button @click="_handleClick">{{ data.submit_text }}</button>
   </div>
@@ -123,6 +136,17 @@ export default {
   border-radius: 5px;
   border: 1px solid #a9a9a9;
   padding: 2px 7px;
+}
+.sc-message--form .sc-message--form--element-textarea {
+  font-size: 13px;
+  border-radius: 5px;
+  border: 1px solid #a9a9a9;
+  padding: 4px 7px;
+  width: 100%;
+  min-height: 60px;
+}
+.sc-message--form .sc-message--form--element-select {
+  font-size: 13px;
 }
 
 .sc-message--form .sc-message--form--errors {
