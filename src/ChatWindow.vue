@@ -19,6 +19,7 @@
       :onButtonClick="onButtonClick"
       :onFormButtonClick="onFormButtonClick"
       :onListButtonClick="onListButtonClick"
+      :onLinkClick="onLinkClick"
     />
     <template v-if="!showLongTextInput">
       <UserInput
@@ -98,6 +99,10 @@ export default {
       required: true
     },
     onListButtonClick: {
+      type: Function,
+      required: true
+    },
+    onLinkClick: {
       type: Function,
       required: true
     },
