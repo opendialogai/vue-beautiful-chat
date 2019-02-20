@@ -7,7 +7,7 @@
         received: message.author === 'them',
         system: message.type === 'system',
       }">
-      <TextMessage v-if="message.type === 'text' || message.type === 'longtext_response'" :data="message.data" :messageColors="determineMessageColors()" />
+      <TextMessage v-if="message.type === 'text' || message.type === 'longtext_response'" :data="message.data" :messageColors="determineMessageColors()" :onLinkClick="onLinkClick" />
       <LongTextMessage v-if="message.type === 'longtext'" :data="message.data" :messageColors="determineMessageColors()" />
       <EmojiMessage v-else-if="message.type === 'emoji'" :data="message.data" />
       <FileMessage v-else-if="message.type === 'file'" :data="message.data" :messageColors="determineMessageColors()" />
@@ -16,6 +16,7 @@
       <ButtonMessage v-else-if="message.type === 'button'" :message="message" :data="message.data" :messageColors="determineMessageColors()" :onButtonClick="onButtonClick" />
       <ButtonResponseMessage v-else-if="message.type === 'button_response'" :data="message.data" :messageColors="determineMessageColors()" />
       <FormMessage v-else-if="message.type === 'webchat_form'" :message="message" :data="message.data" :messageColors="determineMessageColors()" :onFormButtonClick="onFormButtonClick" />
+      <FormResponseMessage v-else-if="message.type === 'webchat_form_response'" :data="message.data" :messageColors="determineMessageColors()" />
       <ImageMessage v-else-if="message.type === 'image'" :data="message.data" :messageColors="determineMessageColors()" />
       <ListMessage v-else-if="message.type === 'list'" :message="message" :data="message.data" :messageColors="determineMessageColors()" :onButtonClick="onListButtonClick" />
       <DatetimeFakeMessage v-else-if="message.type === 'datetime'" :message="message" />
@@ -32,6 +33,7 @@ import DatetimeFakeMessage from './DatetimeFakeMessage.vue'
 import ListMessage from './ListMessage.vue'
 import ImageMessage from './ImageMessage.vue'
 import FormMessage from './FormMessage.vue'
+import FormResponseMessage from './FormResponseMessage.vue'
 import ButtonMessage from './ButtonMessage.vue'
 import ButtonResponseMessage from './ButtonResponseMessage.vue'
 import TextMessage from './TextMessage.vue'
@@ -53,6 +55,7 @@ export default {
     ListMessage,
     ImageMessage,
     FormMessage,
+    FormResponseMessage,
     ButtonMessage,
     ButtonResponseMessage,
     TextMessage,
@@ -84,6 +87,10 @@ export default {
       required: true
     },
     onListButtonClick: {
+      type: Function,
+      required: true
+    },
+    onLinkClick: {
       type: Function,
       required: true
     },

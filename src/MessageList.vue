@@ -7,6 +7,7 @@
              :key="message.id"
              :colors="colors"
              :onButtonClick="onButtonClick"
+             :onLinkClick="onLinkClick"
              :onListButtonClick="onListButtonClick"
              :onFormButtonClick="onFormButtonClick" />
     <Message v-show="showTypingIndicator"
@@ -56,6 +57,10 @@ export default {
       required: true
     },
     onListButtonClick: {
+      type: Function,
+      required: true
+    },
+    onLinkClick: {
       type: Function,
       required: true
     }
