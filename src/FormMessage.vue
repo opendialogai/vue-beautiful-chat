@@ -16,14 +16,14 @@
         <textarea class="sc-message--form--element-textarea" v-model="form.data[element.name].value" />
       </template>
       <template v-if="element.element_type == 'select'">
-        <select class="sc-message--form--element-select" v-model="form.data[element.name].value">
+        <select @change="onSelectChange" class="sc-message--form--element-select" v-model="form.data[element.name].value">
           <option v-for="(option_text, option_value) in element.options" v-bind:value="option_value">
             {{ option_text }}
           </option>
         </select>
       </template>
     </div>
-    <button @click="_handleClick">{{ data.submit_text }}</button>
+    <button v-if="!data.auto_submit" @click="_handleClick">{{ data.submit_text }}</button>
   </div>
 </template>
 
@@ -56,15 +56,20 @@ export default {
     }
   },
   methods: {
+    onSelectChange () {
+      if (this.data.auto_submit) {
+        this._handleClick()
+      }
+    },
     _handleClick () {
-      this.validateForm();
+      this.validateForm()
 
       if (!this.errors.length) {
         this.onFormButtonClick(this.form.data, this.message)
       }
     },
     validateForm () {
-      this.errors = [];
+      this.errors = []
 
       this.data.elements.forEach((element) => {
         if (element.required && !this.form.data[element.name].value.length) {
