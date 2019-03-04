@@ -14,6 +14,7 @@
              :message="{author: 'them', type: 'typing'}"
              :chatImageUrl="chatImageUrl"
              :colors="colors"
+             :onLinkClick="onLinkClick"
              :onButtonClick="onButtonClick"
              :onListButtonClick="onListButtonClick"
              :onFormButtonClick="onFormButtonClick" />
