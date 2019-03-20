@@ -5,6 +5,7 @@
         internal: message.data && message.data.internal,
         sent: message.author === 'me',
         received: message.author === 'them',
+        author: message.type === 'author',
         system: message.type === 'system',
       }">
       <TextMessage v-if="message.type === 'text' || message.type === 'longtext_response'" :data="message.data" :messageColors="determineMessageColors()" :onLinkClick="onLinkClick" />
@@ -12,6 +13,7 @@
       <EmojiMessage v-else-if="message.type === 'emoji'" :data="message.data" />
       <FileMessage v-else-if="message.type === 'file'" :data="message.data" :messageColors="determineMessageColors()" />
       <TypingMessage v-else-if="message.type === 'typing'" :messageColors="determineMessageColors()" />
+      <AuthorMessage v-else-if="message.type === 'author'" :data="message.data" :messageColors="determineMessageColors()" />
       <SystemMessage v-else-if="message.type === 'system'" :data="message.data" :messageColors="determineMessageColors()" />
       <ButtonMessage v-else-if="message.type === 'button'" :message="message" :data="message.data" :messageColors="determineMessageColors()" :onButtonClick="onButtonClick" />
       <ButtonResponseMessage v-else-if="message.type === 'button_response'" :data="message.data" :messageColors="determineMessageColors()" />
@@ -21,7 +23,7 @@
       <ListMessage v-else-if="message.type === 'list'" :message="message" :data="message.data" :messageColors="determineMessageColors()" :onButtonClick="onListButtonClick" />
       <DatetimeFakeMessage v-else-if="message.type === 'datetime'" :message="message" />
     </div>
-    <span v-if="message.type !== 'datetime' && message.type !== 'typing' && message.type !== 'system'" class="sc-message--time-read">
+    <span v-if="message.type !== 'datetime' && message.type !== 'typing' && message.type !== 'system' && message.type !== 'author'" class="sc-message--time-read">
       <template v-if="message.data && message.data.time && !message.data.hidetime">{{ message.data.time }}</template>
       <template v-if="read"> - Read</template>
     </span>
@@ -41,6 +43,7 @@ import LongTextMessage from './LongTextMessage.vue'
 import FileMessage from './FileMessage.vue'
 import EmojiMessage from './EmojiMessage.vue'
 import TypingMessage from './TypingMessage.vue'
+import AuthorMessage from './AuthorMessage.vue'
 import SystemMessage from './SystemMessage.vue'
 import chatIcon from './assets/chat-icon.svg'
 
@@ -63,6 +66,7 @@ export default {
     FileMessage,
     EmojiMessage,
     TypingMessage,
+    AuthorMessage,
     SystemMessage,
   },
   props: {
@@ -209,6 +213,18 @@ export default {
 .sc-message--content.sent .sc-message--text {
   color: white;
   background-color: #4e8cff;
+  max-width: calc(100% - 120px);
+  word-wrap: break-word;
+}
+
+.sc-message--author {
+  color: white;
+  background-color: black;
+}
+
+.sc-message--author.sent {
+  color: black;
+  background-color: white;
   max-width: calc(100% - 120px);
   word-wrap: break-word;
 }
