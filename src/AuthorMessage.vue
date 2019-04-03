@@ -1,5 +1,15 @@
 <template>
-  <div class="sc-message--author">{{data.text}}<p v-if="data.meta" class='sc-message--meta'>{{data.meta}}</p>
+  <div class="sc-message--author">
+    <template v-if="data.author && data.author == 'me'">
+      <span>{{data.text}}</span>
+      <span v-if="data.avatar" v-html="data.avatar"></span>
+      <p v-if="data.meta" class='sc-message--meta'>{{data.meta}}</p>
+    </template>
+    <template v-else>
+      <span v-if="data.avatar" v-html="data.avatar"></span>
+      <span>{{data.text}}</span>
+      <p v-if="data.meta" class='sc-message--meta'>{{data.meta}}</p>
+    </template>
   </div>
 </template>
 
@@ -18,7 +28,7 @@ export default {
 .sc-message--author {
   color: #2d2d2d;
   background-color: white;
-  padding: none;
+  padding: 0;
   border-radius: 6px;
   font-weight: 400;
   font-size: 12px;
