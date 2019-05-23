@@ -184,6 +184,7 @@ export default {
 
 .sc-user-long-input--text {
   width: 100%;
+  max-height: 100%;
   resize: none;
   border: none;
   outline: none;
