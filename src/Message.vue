@@ -21,6 +21,7 @@
       <FormResponseMessage v-else-if="message.type === 'webchat_form_response'" :data="message.data" :messageColors="determineMessageColors()" />
       <ImageMessage v-else-if="message.type === 'image'" :data="message.data" :messageColors="determineMessageColors()" />
       <ListMessage v-else-if="message.type === 'list'" :message="message" :data="message.data" :messageColors="determineMessageColors()" :onButtonClick="onListButtonClick" />
+      <RichMessage v-else-if="message.type === 'rich'" :message="message" :data="message.data" :messageColors="determineMessageColors()" :onButtonClick="onButtonClick" />
       <DatetimeFakeMessage v-else-if="message.type === 'datetime'" :message="message" />
     </div>
     <span v-if="message.type !== 'datetime' && message.type !== 'typing' && message.type !== 'system' && message.type !== 'author'" class="sc-message--time-read">
@@ -38,6 +39,7 @@ import FormMessage from './FormMessage.vue'
 import FormResponseMessage from './FormResponseMessage.vue'
 import ButtonMessage from './ButtonMessage.vue'
 import ButtonResponseMessage from './ButtonResponseMessage.vue'
+import RichMessage from './RichMessage.vue'
 import TextMessage from './TextMessage.vue'
 import LongTextMessage from './LongTextMessage.vue'
 import FileMessage from './FileMessage.vue'
@@ -61,6 +63,7 @@ export default {
     FormResponseMessage,
     ButtonMessage,
     ButtonResponseMessage,
+    RichMessage,
     TextMessage,
     LongTextMessage,
     FileMessage,
