@@ -8,8 +8,9 @@
         author: message.type === 'author',
         system: message.type === 'system',
       }">
-      <TextMessage v-if="message.type === 'text' || message.type === 'longtext_response'" :data="message.data" :messageColors="determineMessageColors()" :onLinkClick="onLinkClick" />
-      <LongTextMessage v-if="message.type === 'longtext'" :data="message.data" :messageColors="determineMessageColors()" />
+      <CarouselListMessage v-if="message.type === 'list' && message.data.view_type" :message="message" :data="message.data" :messageColors="determineMessageColors()" :onButtonClick="onButtonClick" :onLinkClick="onLinkClick" />
+      <TextMessage v-else-if="message.type === 'text' || message.type === 'longtext_response'" :data="message.data" :messageColors="determineMessageColors()" :onLinkClick="onLinkClick" />
+      <LongTextMessage v-else-if="message.type === 'longtext'" :data="message.data" :messageColors="determineMessageColors()" />
       <EmojiMessage v-else-if="message.type === 'emoji'" :data="message.data" />
       <FileMessage v-else-if="message.type === 'file'" :data="message.data" :messageColors="determineMessageColors()" />
       <TypingMessage v-else-if="message.type === 'typing'" :messageColors="determineMessageColors()" />
@@ -32,6 +33,7 @@
 
 <script>
 import DatetimeFakeMessage from './DatetimeFakeMessage.vue'
+import CarouselListMessage from './CarouselListMessage.vue'
 import ListMessage from './ListMessage.vue'
 import ImageMessage from './ImageMessage.vue'
 import FormMessage from './FormMessage.vue'
@@ -55,6 +57,7 @@ export default {
   },
   components: {
     DatetimeFakeMessage,
+    CarouselListMessage,
     ListMessage,
     ImageMessage,
     FormMessage,

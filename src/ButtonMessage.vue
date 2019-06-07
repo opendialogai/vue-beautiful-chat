@@ -6,7 +6,9 @@
 
     <template v-if="data.buttons.length">
       <div class="sc-message--button--buttons">
-        <button v-for="button in data.buttons" @click="_handleClick(button)">{{button.text}}</button>
+        <button v-for="(button, idx) in data.buttons" :key="idx" @click="_handleClick(button)">
+          {{button.text}}
+        </button>
       </div>
     </template>
   </div>
