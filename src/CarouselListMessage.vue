@@ -9,7 +9,7 @@
         <TextMessage v-if="item.message_type === 'text'" :data="item" :messageColors="messageColors" :onLinkClick="onLinkClick" />
         <ButtonMessage v-else-if="item.message_type === 'button'" :message="message" :data="item" :messageColors="messageColors" :onButtonClick="onButtonClick" />
         <ImageMessage v-else-if="item.message_type === 'image'" :data="item" :messageColors="messageColors" />
-        <RichMessage v-else-if="item.message.type === 'rich'" :message="message" :data="item" :messageColors="messageColors" :onButtonClick="onButtonClick" />
+        <RichMessage v-else-if="item.message_type === 'rich'" :message="message" :data="item" :messageColors="messageColors" :onButtonClick="onButtonClick" />
       </div>
     </slider>
   </div>
