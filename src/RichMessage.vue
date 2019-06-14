@@ -7,16 +7,22 @@
     </p>
 
     <template v-if="data.image">
-      <template v-if="data.image.url">
-        <a :href="data.image.url" :target="data.image.link_new_tab ? '_blank' : '_parent'"><img :src="data.image.src" /></a>
-      </template>
-      <template v-else>
-        <img :src="data.image.src" />
-      </template>
+      <div class="sc-message--rich--image">
+        <template v-if="data.image.url">
+          <a :href="data.image.url" :target="data.image.link_new_tab ? '_blank' : '_parent'"><img :src="data.image.src" /></a>
+        </template>
+        <template v-else>
+          <img :src="data.image.src" />
+        </template>
+      </div>
     </template>
 
-    <template v-if="data.button">
-      <button @click="_handleClick(data.button)">{{ data.button.text }}</button>
+    <template v-if="data.buttons.length">
+      <div class="sc-message--rich--buttons">
+        <button v-for="(button, idx) in data.buttons" :key="idx" @click="_handleClick(button)">
+          {{button.text}}
+        </button>
+      </div>
     </template>
   </div>
 </template>
@@ -86,7 +92,16 @@ export default {
   background-color: blue;
 }
 
-.sc-message--rich img {
+.sc-message--button button:last-child {
+  margin-right: 0;
+}
+
+.sc-message--rich .sc-message--rich--image {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.sc-message--rich .sc-message--rich--image img {
   max-width: 100%;
 }
 </style>
