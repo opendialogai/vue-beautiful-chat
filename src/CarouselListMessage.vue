@@ -4,6 +4,8 @@
       :direction="data.view_type"
       :pagination-visible="true"
       :pagination-clickable="true"
+      ref="slider"
+      @slide-change-start="onSlideChangeStart"
     >
       <div v-for="(item, idx) in data.items" :key="idx">
         <TextMessage v-if="item.message_type === 'text'" :data="item" :messageColors="messageColors" :onLinkClick="onLinkClick" />
@@ -12,6 +14,15 @@
         <RichMessage v-else-if="item.message_type === 'rich'" :message="message" :data="item" :messageColors="messageColors" :onButtonClick="onButtonClick" />
       </div>
     </slider>
+
+    <div v-if="data.view_type == 'horizontal'" class="sc-message--carousel-list--arrows">
+      <div v-if="showLeftArrow" class="sc-message--carousel-list--arrow-left" @click="previousPage">
+        <img src="./assets/left.svg" />
+      </div>
+      <div v-if="showRightArrow" class="sc-message--carousel-list--arrow-right" @click="nextPage">
+        <img src="./assets/right.svg" />
+      </div>
+    </div>
   </div>
 </template>
 
@@ -52,6 +63,27 @@ export default {
       type: Function,
       required: true
     }
+  },
+  data() {
+    return {
+      showLeftArrow: false,
+      showRightArrow: false,
+    }
+  },
+  mounted () {
+    this.showRightArrow = (this.data.items.length > 1) ? true : false
+  },
+  methods: {
+    previousPage () {
+      this.$refs.slider.prev()
+    },
+    nextPage () {
+      this.$refs.slider.next()
+    },
+    onSlideChangeStart (currentPage, el) {
+      this.showLeftArrow = (currentPage == 1) ? false : true
+      this.showRightArrow = (this.data.items.length > 1 && currentPage < this.data.items.length) ? true : false
+    }
   }
 }
 </script>
@@ -60,8 +92,9 @@ export default {
 .sc-message--carousel-list {
   background: #eaeaea;
   border-radius: 6px;
-  padding: 0 12px;
+  padding: 0 15px;
   max-width: calc(100% - 40px);
+  position: relative;
 }
 
 .sc-message--carousel-list .slider.horizontal {
@@ -69,5 +102,27 @@ export default {
 }
 .sc-message--carousel-list .slider.vertical {
   padding-right: 30px;
+}
+
+.sc-message--carousel-list--arrows {
+  position: absolute;
+  top: calc(50% - 25px);
+  width: calc(100% - 6px);
+  left: 3px;
+}
+.sc-message--carousel-list--arrows div {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+.sc-message--carousel-list--arrows img {
+  width: 100%;
+}
+
+.sc-message--carousel-list--arrows .sc-message--carousel-list--arrow-left {
+  float: left;
+}
+.sc-message--carousel-list--arrows .sc-message--carousel-list--arrow-right {
+  float: right;
 }
 </style>
