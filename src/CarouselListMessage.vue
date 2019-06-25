@@ -4,6 +4,7 @@
       :direction="data.view_type"
       :pagination-visible="true"
       :pagination-clickable="true"
+      :drag-enable="false"
       ref="slider"
       @slide-change-start="onSlideChangeStart"
     >
