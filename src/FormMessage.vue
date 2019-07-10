@@ -12,6 +12,9 @@
       <template v-if="element.element_type == 'text'">
         <input class="sc-message--form--element-input" v-model="form.data[element.name].value" v-on:keyup.enter="_handleClick" />
       </template>
+      <template v-if="element.element_type == 'number'">
+        <input type="number" class="sc-message--form--element-input" v-model="form.data[element.name].value" v-on:keyup.enter="_handleClick" />
+      </template>
       <template v-if="element.element_type == 'textarea'">
         <textarea class="sc-message--form--element-textarea" v-model="form.data[element.name].value" />
       </template>
