@@ -12,6 +12,9 @@
       <template v-if="element.element_type == 'text'">
         <input class="sc-message--form--element-input" v-model="form.data[element.name].value" v-on:keyup.enter="_handleClick" />
       </template>
+      <template v-if="element.element_type == 'number'">
+        <input type="number" class="sc-message--form--element-input" v-model="form.data[element.name].value" v-on:keyup.enter="_handleClick" />
+      </template>
       <template v-if="element.element_type == 'textarea'">
         <textarea class="sc-message--form--element-textarea" v-model="form.data[element.name].value" />
       </template>
@@ -22,13 +25,22 @@
           </option>
         </select>
       </template>
+      <template v-if="element.element_type == 'auto-select'">
+        <v-select @input="onSelectChange" v-model="form.data[element.name].value" :options="element.options" :reduce="option => option.key" label="value"></v-select>
+      </template>
     </div>
     <button v-if="!data.auto_submit" @click="_handleClick">{{ data.submit_text }}</button>
   </div>
 </template>
 
 <script>
+import vSelect from 'vue-select'
+import 'vue-select/dist/vue-select.css'
+
 export default {
+  components: {
+    vSelect
+  },
   props: {
     data: {
       type: Object,
@@ -160,5 +172,11 @@ export default {
   padding: 2px 7px;
   border-radius: 5px;
   margin-bottom: 10px;
+}
+</style>
+
+<style>
+.sc-message--form--element .vs__dropdown-toggle {
+  background: white;
 }
 </style>
