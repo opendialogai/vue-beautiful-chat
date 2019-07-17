@@ -84,10 +84,13 @@ export default {
       this.errors = []
 
       this.data.elements.forEach((element) => {
-        if (element.required && !this.form.data[element.name].value.length) {
+        if (element.required && this.isEmpty(this.form.data[element.name].value)) {
           this.errors.push('<em>' + element.display + '</em> field is required')
         }
       })
+    },
+    isEmpty(value) {
+      return (value === null || value === undefined || value === '')
     }
   },
   created () {
