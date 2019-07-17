@@ -29,7 +29,7 @@
         <v-select @input="onSelectChange" v-model="form.data[element.name].value" :options="element.options" :reduce="option => option.key" label="value"></v-select>
       </template>
     </div>
-    <button v-if="!data.auto_submit" @click="_handleClick">{{ data.submit_text }}</button>
+    <button class="submit-button" v-if="!data.auto_submit" @click="_handleClick">{{ data.submit_text }}</button>
   </div>
 </template>
 
@@ -178,5 +178,24 @@ export default {
 <style>
 .sc-message--form--element .vs__dropdown-toggle {
   background: white;
+}
+.sc-message--form--element .vs__dropdown-toggle .vs__selected-options {
+  min-height: 27px;
+}
+.sc-message--form--element .vs__dropdown-toggle .vs__selected-options .vs__search {
+  display: none;
+}
+.sc-message--form--element .vs__dropdown-menu {
+  min-width: 260px;
+}
+.sc-message--form--element .vs__dropdown-menu .vs__dropdown-option {
+  white-space: normal;
+  border-bottom: 1px solid lightgray;
+}
+.sc-message--form--element .vs__dropdown-menu .vs__dropdown-option:last-child {
+  border-bottom: none;
+}
+.sc-message--form--element .vs--single.vs--open .vs__selected {
+  position: relative;
 }
 </style>
