@@ -185,8 +185,17 @@ export default {
 .sc-message--form--element .vs__dropdown-toggle .vs__selected-options {
   min-height: 27px;
 }
+.sc-message--form--element .vs__dropdown-toggle .vs__selected-options .vs__selected {
+  max-width: calc(100% - 5px);
+}
 .sc-message--form--element .vs__dropdown-toggle .vs__selected-options .vs__search {
-  display: none;
+  padding: 0;
+  margin: 0;
+}
+.sc-message--form--element .vs__dropdown-toggle .vs__selected-options .vs__search:focus {
+  min-width: 160px;
+  margin: 4px 0 0;
+  padding: 0 7px;
 }
 .sc-message--form--element .vs__dropdown-menu {
   min-width: 260px;
