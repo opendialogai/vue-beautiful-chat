@@ -19,7 +19,7 @@
 
     <template v-if="data.buttons.length">
       <div class="sc-message--rich--buttons">
-        <button v-for="(button, idx) in data.buttons" :key="idx" @click="_handleClick(button)">
+        <button v-for="(button, idx) in data.buttons" :key="idx" @click="_handleClick(button)" :style="{backgroundColor: colors.button.bg, color: colors.button.text, '--button-hover': colors.button.hoverbg}">
           {{button.text}}
         </button>
       </div>
@@ -31,6 +31,10 @@
 export default {
   props: {
     data: {
+      type: Object,
+      required: true
+    },
+    colors: {
       type: Object,
       required: true
     },
@@ -80,8 +84,6 @@ export default {
 
 .sc-message--rich button {
   cursor: pointer;
-  color: white;
-  background-color: #4e8cff;
   border-radius: 30px;
   border: none;
   font-size: 14px;
@@ -89,7 +91,7 @@ export default {
   margin: 0 10px 10px 0;
 }
 .sc-message--rich button:hover {
-  background-color: blue;
+  background-color: var(--button-hover) !important;
 }
 
 .sc-message--button button:last-child {

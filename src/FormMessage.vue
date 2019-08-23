@@ -29,7 +29,9 @@
         <v-select @input="onSelectChange" v-model="form.data[element.name].value" :options="element.options" :reduce="option => option.key" label="value"></v-select>
       </template>
     </div>
-    <button class="submit-button" v-if="!data.auto_submit" @click="_handleClick">{{ data.submit_text }}</button>
+    <button class="submit-button" v-if="!data.auto_submit" @click="_handleClick" :style="{backgroundColor: colors.button.bg, color: colors.button.text, '--button-hover': colors.button.hoverbg}">
+      {{ data.submit_text }}
+    </button>
   </div>
 </template>
 
@@ -43,6 +45,10 @@ export default {
   },
   props: {
     data: {
+      type: Object,
+      required: true
+    },
+    colors: {
       type: Object,
       required: true
     },
@@ -118,8 +124,6 @@ export default {
 
 .sc-message--form button {
   cursor: pointer;
-  color: white;
-  background-color: #4e8cff;
   border-radius: 15px;
   border: none;
   font-size: 14px;
@@ -127,7 +131,7 @@ export default {
   margin-top: 5px;
 }
 .sc-message--form button:hover {
-  background-color: blue;
+  background-color: var(--button-hover) !important;
 }
 
 .sc-message--content.sent .sc-message--form {

@@ -7,7 +7,22 @@
     <img v-if="imageUrl" class="sc-header--img" :src="imageUrl" alt="" />
     <div class="sc-header--team-name">{{teamName}}</div>
     <div class="sc-header--minimize-button">
-      <img src="./assets/down-arrow.svg" />
+      <svg width="18px" height="18px" viewBox="0 0 18 18" class="minimize">
+        <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+          <g>
+            <polygon id="Rectangle" :fill="colors.minimizeButton.bg" fill-rule="nonzero" points="5 7 13 7 8.99257813 11.3664551"></polygon>
+            <rect id="Rectangle" :stroke="colors.minimizeButton.bg" x="0.5" y="0.5" width="17" height="17" rx="3"></rect>
+          </g>
+        </g>
+      </svg>
+      <svg width="18px" height="18px" viewBox="0 0 18 18" class="maximize">
+        <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+          <g>
+            <polygon id="Rectangle" :fill="colors.minimizeButton.bg" fill-rule="nonzero" transform="translate(9.000000, 9.183228) rotate(-180.000000) translate(-9.000000, -9.183228) " points="5 7.0000009 13 7.0000009 8.99257813 11.366456"></polygon>
+            <rect id="Rectangle" :stroke="colors.minimizeButton.bg" x="0.5" y="0.5" width="17" height="17" rx="3"></rect>
+          </g>
+        </g>
+      </svg>
     </div>
   </div>
 </template>
@@ -92,14 +107,20 @@ export default {
   display: none;
 }
 
-.sc-header--minimize-button img {
+.sc-header--minimize-button svg {
   width: 100%;
   height: 100%;
-  padding: 10px;
+  padding: 11px;
   box-sizing: border-box;
 }
-.sc-chat-window.closed .sc-header--minimize-button img {
-  transform: rotate(180deg);
+.sc-chat-window.opened .sc-header--minimize-button svg.maximize {
+  display: none;
+}
+.sc-chat-window.closed .sc-header--minimize-button svg.minimize {
+  display: none;
+}
+.sc-chat-window.closed .sc-header--minimize-button svg.maximize {
+  display: block;
 }
 
 </style>
