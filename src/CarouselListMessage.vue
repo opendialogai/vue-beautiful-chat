@@ -10,9 +10,9 @@
     >
       <div v-for="(item, idx) in data.items" :key="idx">
         <TextMessage v-if="item.message_type === 'text'" :data="item" :messageColors="messageColors" :onLinkClick="onLinkClick" />
-        <ButtonMessage v-else-if="item.message_type === 'button'" :message="message" :data="item" :messageColors="messageColors" :onButtonClick="onButtonClick" />
+        <ButtonMessage v-else-if="item.message_type === 'button'" :message="message" :data="item" :messageColors="messageColors" :colors="colors" :onButtonClick="onButtonClick" />
         <ImageMessage v-else-if="item.message_type === 'image'" :data="item" :messageColors="messageColors" />
-        <RichMessage v-else-if="item.message_type === 'rich'" :message="message" :data="item" :messageColors="messageColors" :onButtonClick="onButtonClick" />
+        <RichMessage v-else-if="item.message_type === 'rich'" :message="message" :data="item" :messageColors="messageColors" :colors="colors" :onButtonClick="onButtonClick" />
       </div>
     </slider>
 
@@ -45,6 +45,10 @@ export default {
   },
   props: {
     data: {
+      type: Object,
+      required: true
+    },
+    colors: {
       type: Object,
       required: true
     },

@@ -8,7 +8,7 @@
         author: message.type === 'author',
         system: message.type === 'system',
       }">
-      <CarouselListMessage v-if="message.type === 'list' && message.data.view_type" :message="message" :data="message.data" :messageColors="determineMessageColors()" :onButtonClick="onButtonClick" :onLinkClick="onLinkClick" />
+      <CarouselListMessage v-if="message.type === 'list' && message.data.view_type" :message="message" :data="message.data" :messageColors="determineMessageColors()" :colors="colors" :onButtonClick="onButtonClick" :onLinkClick="onLinkClick" />
       <TextMessage v-else-if="message.type === 'text' || message.type === 'longtext_response'" :data="message.data" :messageColors="determineMessageColors()" :onLinkClick="onLinkClick" />
       <LongTextMessage v-else-if="message.type === 'longtext'" :data="message.data" :messageColors="determineMessageColors()" />
       <EmojiMessage v-else-if="message.type === 'emoji'" :data="message.data" />
@@ -16,13 +16,13 @@
       <TypingMessage v-else-if="message.type === 'typing'" :messageColors="determineMessageColors()" />
       <AuthorMessage v-else-if="message.type === 'author'" :data="message.data" />
       <SystemMessage v-else-if="message.type === 'system'" :data="message.data" :messageColors="determineMessageColors()" />
-      <ButtonMessage v-else-if="message.type === 'button'" :message="message" :data="message.data" :messageColors="determineMessageColors()" :onButtonClick="onButtonClick" />
+      <ButtonMessage v-else-if="message.type === 'button'" :message="message" :data="message.data" :messageColors="determineMessageColors()" :colors="colors" :onButtonClick="onButtonClick" />
       <ButtonResponseMessage v-else-if="message.type === 'button_response'" :data="message.data" :messageColors="determineMessageColors()" />
-      <FormMessage v-else-if="message.type === 'webchat_form'" :message="message" :data="message.data" :messageColors="determineMessageColors()" :onFormButtonClick="onFormButtonClick" />
+      <FormMessage v-else-if="message.type === 'webchat_form'" :message="message" :data="message.data" :messageColors="determineMessageColors()" :colors="colors" :onFormButtonClick="onFormButtonClick" />
       <FormResponseMessage v-else-if="message.type === 'form_response'" :data="message.data" :messageColors="determineMessageColors()" />
       <ImageMessage v-else-if="message.type === 'image'" :data="message.data" :messageColors="determineMessageColors()" />
-      <ListMessage v-else-if="message.type === 'list'" :message="message" :data="message.data" :messageColors="determineMessageColors()" :onButtonClick="onListButtonClick" />
-      <RichMessage v-else-if="message.type === 'rich'" :message="message" :data="message.data" :messageColors="determineMessageColors()" :onButtonClick="onButtonClick" />
+      <ListMessage v-else-if="message.type === 'list'" :message="message" :data="message.data" :messageColors="determineMessageColors()" :colors="colors" :onButtonClick="onListButtonClick" />
+      <RichMessage v-else-if="message.type === 'rich'" :message="message" :data="message.data" :messageColors="determineMessageColors()" :colors="colors" :onButtonClick="onButtonClick" />
       <DatetimeFakeMessage v-else-if="message.type === 'datetime'" :message="message" />
     </div>
     <span v-if="message.type !== 'datetime' && message.type !== 'typing' && message.type !== 'system' && message.type !== 'author'" class="sc-message--time-read">

@@ -13,7 +13,9 @@
           <a :href="element.button.url" :target="element.button.link_new_tab ? '_blank' : '_parent'">{{ element.button.text }}</a>
         </template>
         <template v-else-if="element.button.callback">
-          <button @click="_handleClick(element.button.callback)">{{ element.button.text }}</button>
+          <button @click="_handleClick(element.button.callback)" :style="{backgroundColor: colors.button.bg, color: colors.button.text, '--button-hover': colors.button.hoverbg}">
+            {{ element.button.text }}
+          </button>
         </template>
       </div>
     </div>
@@ -24,6 +26,10 @@
 export default {
   props: {
     data: {
+      type: Object,
+      required: true
+    },
+    colors: {
       type: Object,
       required: true
     },
@@ -100,14 +106,12 @@ export default {
 }
 .sc-message--list .sc-message--list--button button {
   cursor: pointer;
-  color: white;
-  background-color: #4e8cff;
   border-radius: 7px;
   border: none;
   font-size: 13px;
   padding: 4px 10px;
 }
 .sc-message--list .sc-message--list--button button:hover {
-  background-color: blue;
+  background-color: var(--button-hover) !important;
 }
 </style>

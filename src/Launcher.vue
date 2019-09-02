@@ -174,6 +174,14 @@ export default {
           userInput: {
             bg: '#f4f7f9',
             text: '#565867'
+          },
+          button: {
+            bg: '#4e8cff',
+            hoverbg: '#0000ff',
+            text: '#ffffff'
+          },
+          minimizeButton: {
+            bg: '#000000'
           }
         }
       }
