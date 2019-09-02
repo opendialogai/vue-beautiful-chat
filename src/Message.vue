@@ -207,22 +207,6 @@ export default {
   }
 }
 
-.sc-message--text {
-  padding: 10px 12px;
-  border-radius: 6px;
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 1.4;
-  white-space: pre-wrap;
-  -webkit-font-smoothing: subpixel-antialiased;
-}
-.sc-message--content.sent .sc-message--text {
-  color: white;
-  background-color: #4e8cff;
-  max-width: calc(100% - 120px);
-  word-wrap: break-word;
-}
-
 .sc-message--author {
   color: white;
   background-color: black;
@@ -232,14 +216,6 @@ export default {
   color: black;
   background-color: white;
   max-width: calc(100% - 120px);
-  word-wrap: break-word;
-}
-
-.sc-message--content.received .sc-message--text {
-  color: #263238;
-  background-color: #f4f7f9;
-  margin-right: 40px;
-  max-width: calc(100% - 40px);
   word-wrap: break-word;
 }
 </style>

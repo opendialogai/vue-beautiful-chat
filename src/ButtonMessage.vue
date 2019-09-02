@@ -1,8 +1,8 @@
 <template>
   <div class="sc-message--button" :style="messageColors">
-    <p class="sc-message--button--text" v-linkified>
+    <div class="sc-message--button--text" v-linkified>
       <span v-html="data.text"></span>
-    </p>
+    </div>
 
     <template v-if="data.buttons.length">
       <div class="sc-message--button--buttons">
@@ -50,12 +50,12 @@ export default {
 .sc-message--button {
   background: #eaeaea;
   border-radius: 6px;
-  padding: 0 12px;
+  padding: 10px 12px;
   max-width: calc(100% - 40px);
 }
 
 .sc-message--button .sc-message--button--buttons {
-  padding-bottom: 5px;
+  padding-top: 15px;
 }
 
 .sc-message--button button {
