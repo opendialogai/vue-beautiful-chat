@@ -1,10 +1,22 @@
 {
-  "name": "vue-beautiful-chat",
+  "name": "@opendialogai/vue-beautiful-chat",
   "version": "1.4.0",
   "description": "A simple and beautiful Vue chat component backend agnostic.",
   "main": "./src/index.js",
-  "repository": "https://github.com/mattmezza/vue-beautiful-chat.git",
-  "author": "Matteo Merola <mattmezza@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/opendialogai/vue-beautiful-chat.git"
+  },
+  "contributors": [
+    {
+      "name": "Stuart Haigh",
+      "email": "stuarth@greenshootlabs.com"
+    },
+    {
+      "name": "Ronald Ashri",
+      "email": "ronalda@greenshootlabs.com"
+    }
+  ],
   "license": "MIT",
   "keywords": [
     "vue",
@@ -50,7 +62,7 @@
     "watch": "webpack --config ./build/webpack.client.config.js --progress --hide-modules --watch"
   },
   "bugs": {
-    "url": "https://github.com/mattmezza/vue-beautiful-chat/issues"
+    "url": "https://github.com/opendialogai/vue-beautiful-chat/issues"
   },
   "dependencies": {
     "babel-preset-env": "^1.7.0",
@@ -58,5 +70,6 @@
     "vue-linkify": "^1.0.1",
     "vue-plain-slider": "^1.1.1",
     "vue-select": "^3.1.0"
-  }
+  },
+  "homepage": "https://github.com/opendialogai/vue-beautiful-chat#readme"
 }
