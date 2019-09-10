@@ -31,7 +31,7 @@ Go to [FAQ](#faq) ⬇️
 ## Installation
 
 ```
-$ yarn add vue-beautiful-chat
+$ yarn add @opendialogai/vue-beautiful-chat
 ```
 
 ## Example
