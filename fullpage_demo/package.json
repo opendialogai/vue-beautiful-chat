@@ -1,0 +1,27 @@
+{
+  "name": "demo",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "cross-env NODE_ENV=development webpack-dev-server --open --hot",
+    "build": "cross-env NODE_ENV=production webpack --progress --hide-modules && cp index.html dist/",
+    "gh:publish": "yarn run build && gh-pages -d dist"
+  },
+  "dependencies": {
+    "vue": "^2.6.10"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.6.0",
+    "@babel/preset-env": "^7.6.0",
+    "babel-loader": "^8.0.6",
+    "cross-env": "^5.2.1",
+    "css-loader": "^3.2.0",
+    "file-loader": "^4.2.0",
+    "gh-pages": "^2.1.1",
+    "node-sass": "^4.12.0",
+    "sass-loader": "^8.0.0",
+    "terser-webpack-plugin": "^2.0.1",
+    "vue-loader": "^15.7.1",
+    "webpack": "^4.40.1",
+    "webpack-dev-server": "^3.8.0"
+  }
+}
