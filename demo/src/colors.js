@@ -23,12 +23,12 @@ export default {
       text: '#212121'
     },
     button: {
-      bg: '#4e8cff',
-      hoverbg: '#0000ff',
+      bg: '#D32F2F',
+      hoverbg: '#96180f',
       text: '#ffffff'
     },
     minimizeButton: {
-      bg: '#000000'
+      bg: '#fff'
     }
   },
   green: {
@@ -55,8 +55,8 @@ export default {
       text: '#212121'
     },
     button: {
-      bg: '#4e8cff',
-      hoverbg: '#0000ff',
+      bg: '#388E3C',
+      hoverbg: '#114c13',
       text: '#ffffff'
     },
     minimizeButton: {
@@ -92,7 +92,7 @@ export default {
       text: '#ffffff'
     },
     minimizeButton: {
-      bg: '#000000'
+      bg: '#fff'
     }
   },
   dark: {
@@ -119,9 +119,9 @@ export default {
       text: '#ecf0f1'
     },
     button: {
-      bg: '#4e8cff',
-      hoverbg: '#0000ff',
-      text: '#ffffff'
+      bg: '#34495e',
+      hoverbg: '#2a2a3e',
+      text: '#ecf0f1'
     },
     minimizeButton: {
       bg: '#000000'

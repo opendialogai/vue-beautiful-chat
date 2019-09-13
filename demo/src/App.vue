@@ -9,7 +9,7 @@
       :messageList="messageList"
       :newMessagesCount="newMessagesCount"
       :isOpen="isChatOpen"
-      :close="closeChat"
+      :close="toggleChatOpen"
       :open="openChat"
       :on-button-click="onButtonClick"
       :on-form-button-click="onFormButtonClick"
@@ -87,11 +87,33 @@ export default {
     closeChat () {
       this.isChatOpen = false
     },
+    toggleChatOpen() {
+      this.isChatOpen = !this.isChatOpen
+    },
     onButtonClick() {
 
     },
     onFormButtonClick(data, msg) {
+      const responseData = {};
+      const newMessageText = [];
 
+      msg.data.elements.forEach((element) => {
+        responseData[element.name] = data[element.name].value;
+
+        if (element.display) {
+          newMessageText.push(`${element.display}: ${data[element.name].value}`);
+        } else {
+          newMessageText.push(data[element.name].value);
+        }
+      });
+
+      responseData.text = newMessageText.join('<br>');
+
+      this.messageList.push({
+        type: 'form_response',
+        author: 'me',
+        data: responseData,
+      });
     },
     onLinkClick(url) {
 
@@ -100,7 +122,7 @@ export default {
 
     },
     expandChat() {
-
+      this.isExpand = !this.isExpand;
     },
     setColor (color) {
       this.colors = this.availableColors[color]

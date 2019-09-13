@@ -85,7 +85,6 @@ export default {
   height: 40px;
   margin-right: 10px;
   box-sizing: border-box;
-  display: none;
 }
 
 .sc-header--expand-button img {
@@ -104,7 +103,6 @@ export default {
   height: 40px;
   margin-right: 10px;
   box-sizing: border-box;
-  display: none;
 }
 
 .sc-header--minimize-button svg {

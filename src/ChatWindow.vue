@@ -199,6 +199,10 @@ export default {
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
+.sc-chat-window.expanded {
+  width: 490px;
+}
+
 .sc-chat-window.fullscreen {
   position: relative;
   width: 100%;
