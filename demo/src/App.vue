@@ -3,13 +3,18 @@
     <Header :colors="colors" :chosenColor="chosenColor" />
     <beautiful-chat
       :agentProfile="agentProfile"
-      :onMessageWasSent="onMessageWasSent"
+      :expand="expandChat"
+      :is-expand="isExpand"
+      :on-message-was-sent="onMessageWasSent"
       :messageList="messageList"
       :newMessagesCount="newMessagesCount"
       :isOpen="isChatOpen"
       :close="closeChat"
       :open="openChat"
-      :onButtonClick="onButtonClick"
+      :on-button-click="onButtonClick"
+      :on-form-button-click="onFormButtonClick"
+      :on-list-button-click="onListButtonClick"
+      :on-link-click="onLinkClick"
       :showEmoji="true"
       :showFile="true"
       :showTypingIndicator="showTypingIndicator"
@@ -51,6 +56,7 @@ export default {
       messageList: messageHistory,
       newMessagesCount: 0,
       isChatOpen: false,
+      isExpand: false,
       showTypingIndicator: false,
       colors: null,
       availableColors,
@@ -82,6 +88,18 @@ export default {
       this.isChatOpen = false
     },
     onButtonClick() {
+
+    },
+    onFormButtonClick(data, msg) {
+
+    },
+    onLinkClick(url) {
+
+    },
+    onListButtonClick(callback) {
+
+    },
+    expandChat() {
 
     },
     setColor (color) {
