@@ -1,12 +1,14 @@
 <template>
   <div class="sc-message--button" :style="messageColors">
-    <p class="sc-message--button--text" v-linkified>
+    <div class="sc-message--button--text" v-linkified>
       <span v-html="data.text"></span>
-    </p>
+    </div>
 
     <template v-if="data.buttons.length">
       <div class="sc-message--button--buttons">
-        <button v-for="button in data.buttons" @click="_handleClick(button)">{{button.text}}</button>
+        <button v-for="(button, idx) in data.buttons" :key="idx" @click="_handleClick(button)" :style="{backgroundColor: colors.button.bg, color: colors.button.text, '--button-hover': colors.button.hoverbg}">
+          {{button.text}}
+        </button>
       </div>
     </template>
   </div>
@@ -16,6 +18,10 @@
 export default {
   props: {
     data: {
+      type: Object,
+      required: true
+    },
+    colors: {
       type: Object,
       required: true
     },
@@ -44,18 +50,16 @@ export default {
 .sc-message--button {
   background: #eaeaea;
   border-radius: 6px;
-  padding: 0 12px;
+  padding: 10px 12px;
   max-width: calc(100% - 40px);
 }
 
 .sc-message--button .sc-message--button--buttons {
-  padding-bottom: 5px;
+  padding-top: 15px;
 }
 
 .sc-message--button button {
   cursor: pointer;
-  color: white;
-  background-color: #4e8cff;
   border-radius: 30px;
   border: none;
   font-size: 14px;
@@ -64,7 +68,7 @@ export default {
 }
 
 .sc-message--button button:hover {
-  background-color: blue;
+  background-color: var(--button-hover) !important;
 }
 
 .sc-message--button button:last-child {

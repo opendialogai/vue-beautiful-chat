@@ -12,6 +12,9 @@
       <template v-if="element.element_type == 'text'">
         <input class="sc-message--form--element-input" v-model="form.data[element.name].value" v-on:keyup.enter="_handleClick" />
       </template>
+      <template v-if="element.element_type == 'number'">
+        <input type="number" class="sc-message--form--element-input" v-model="form.data[element.name].value" v-on:keyup.enter="_handleClick" />
+      </template>
       <template v-if="element.element_type == 'textarea'">
         <textarea class="sc-message--form--element-textarea" v-model="form.data[element.name].value" />
       </template>
@@ -22,15 +25,30 @@
           </option>
         </select>
       </template>
+      <template v-if="element.element_type == 'auto-select'">
+        <v-select @input="onSelectChange" v-model="form.data[element.name].value" :options="element.options" :reduce="option => option.key" label="value"></v-select>
+      </template>
     </div>
-    <button v-if="!data.auto_submit" @click="_handleClick">{{ data.submit_text }}</button>
+    <button class="submit-button" v-if="!data.auto_submit" @click="_handleClick" :style="{backgroundColor: colors.button.bg, color: colors.button.text, '--button-hover': colors.button.hoverbg}">
+      {{ data.submit_text }}
+    </button>
   </div>
 </template>
 
 <script>
+import vSelect from 'vue-select'
+import 'vue-select/dist/vue-select.css'
+
 export default {
+  components: {
+    vSelect
+  },
   props: {
     data: {
+      type: Object,
+      required: true
+    },
+    colors: {
       type: Object,
       required: true
     },
@@ -72,10 +90,13 @@ export default {
       this.errors = []
 
       this.data.elements.forEach((element) => {
-        if (element.required && !this.form.data[element.name].value.length) {
+        if (element.required && this.isEmpty(this.form.data[element.name].value)) {
           this.errors.push('<em>' + element.display + '</em> field is required')
         }
       })
+    },
+    isEmpty(value) {
+      return (value === null || value === undefined || value === '')
     }
   },
   created () {
@@ -103,8 +124,6 @@ export default {
 
 .sc-message--form button {
   cursor: pointer;
-  color: white;
-  background-color: #4e8cff;
   border-radius: 15px;
   border: none;
   font-size: 14px;
@@ -112,7 +131,7 @@ export default {
   margin-top: 5px;
 }
 .sc-message--form button:hover {
-  background-color: blue;
+  background-color: var(--button-hover) !important;
 }
 
 .sc-message--content.sent .sc-message--form {
@@ -160,5 +179,39 @@ export default {
   padding: 2px 7px;
   border-radius: 5px;
   margin-bottom: 10px;
+}
+</style>
+
+<style>
+.sc-message--form--element .vs__dropdown-toggle {
+  background: white;
+}
+.sc-message--form--element .vs__dropdown-toggle .vs__selected-options {
+  min-height: 27px;
+}
+.sc-message--form--element .vs__dropdown-toggle .vs__selected-options .vs__selected {
+  max-width: calc(100% - 5px);
+}
+.sc-message--form--element .vs__dropdown-toggle .vs__selected-options .vs__search {
+  padding: 0;
+  margin: 0;
+}
+.sc-message--form--element .vs__dropdown-toggle .vs__selected-options .vs__search:focus {
+  min-width: 160px;
+  margin: 4px 0 0;
+  padding: 0 7px;
+}
+.sc-message--form--element .vs__dropdown-menu {
+  min-width: 260px;
+}
+.sc-message--form--element .vs__dropdown-menu .vs__dropdown-option {
+  white-space: normal;
+  border-bottom: 1px solid lightgray;
+}
+.sc-message--form--element .vs__dropdown-menu .vs__dropdown-option:last-child {
+  border-bottom: none;
+}
+.sc-message--form--element .vs--single.vs--open .vs__selected {
+  position: relative;
 }
 </style>

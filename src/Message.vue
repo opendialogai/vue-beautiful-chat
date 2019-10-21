@@ -8,19 +8,21 @@
         author: message.type === 'author',
         system: message.type === 'system',
       }">
-      <TextMessage v-if="message.type === 'text' || message.type === 'longtext_response'" :data="message.data" :messageColors="determineMessageColors()" :onLinkClick="onLinkClick" />
-      <LongTextMessage v-if="message.type === 'longtext'" :data="message.data" :messageColors="determineMessageColors()" />
+      <CarouselListMessage v-if="message.type === 'list' && message.data.view_type" :message="message" :data="message.data" :messageColors="determineMessageColors()" :colors="colors" :onButtonClick="onButtonClick" :onLinkClick="onLinkClick" />
+      <TextMessage v-else-if="message.type === 'text' || message.type === 'longtext_response'" :data="message.data" :messageColors="determineMessageColors()" :onLinkClick="onLinkClick" />
+      <LongTextMessage v-else-if="message.type === 'longtext'" :data="message.data" :messageColors="determineMessageColors()" />
       <EmojiMessage v-else-if="message.type === 'emoji'" :data="message.data" />
       <FileMessage v-else-if="message.type === 'file'" :data="message.data" :messageColors="determineMessageColors()" />
       <TypingMessage v-else-if="message.type === 'typing'" :messageColors="determineMessageColors()" />
-      <AuthorMessage v-else-if="message.type === 'author'" :data="message.data" :messageColors="determineMessageColors()" />
+      <AuthorMessage v-else-if="message.type === 'author'" :data="message.data" />
       <SystemMessage v-else-if="message.type === 'system'" :data="message.data" :messageColors="determineMessageColors()" />
-      <ButtonMessage v-else-if="message.type === 'button'" :message="message" :data="message.data" :messageColors="determineMessageColors()" :onButtonClick="onButtonClick" />
+      <ButtonMessage v-else-if="message.type === 'button'" :message="message" :data="message.data" :messageColors="determineMessageColors()" :colors="colors" :onButtonClick="onButtonClick" />
       <ButtonResponseMessage v-else-if="message.type === 'button_response'" :data="message.data" :messageColors="determineMessageColors()" />
-      <FormMessage v-else-if="message.type === 'webchat_form'" :message="message" :data="message.data" :messageColors="determineMessageColors()" :onFormButtonClick="onFormButtonClick" />
-      <FormResponseMessage v-else-if="message.type === 'webchat_form_response'" :data="message.data" :messageColors="determineMessageColors()" />
+      <FormMessage v-else-if="message.type === 'webchat_form'" :message="message" :data="message.data" :messageColors="determineMessageColors()" :colors="colors" :onFormButtonClick="onFormButtonClick" />
+      <FormResponseMessage v-else-if="message.type === 'form_response'" :data="message.data" :messageColors="determineMessageColors()" />
       <ImageMessage v-else-if="message.type === 'image'" :data="message.data" :messageColors="determineMessageColors()" />
-      <ListMessage v-else-if="message.type === 'list'" :message="message" :data="message.data" :messageColors="determineMessageColors()" :onButtonClick="onListButtonClick" />
+      <ListMessage v-else-if="message.type === 'list'" :message="message" :data="message.data" :messageColors="determineMessageColors()" :colors="colors" :onButtonClick="onListButtonClick" />
+      <RichMessage v-else-if="message.type === 'rich'" :message="message" :data="message.data" :messageColors="determineMessageColors()" :colors="colors" :onButtonClick="onButtonClick" />
       <DatetimeFakeMessage v-else-if="message.type === 'datetime'" :message="message" />
     </div>
     <span v-if="message.type !== 'datetime' && message.type !== 'typing' && message.type !== 'system' && message.type !== 'author'" class="sc-message--time-read">
@@ -32,12 +34,14 @@
 
 <script>
 import DatetimeFakeMessage from './DatetimeFakeMessage.vue'
+import CarouselListMessage from './CarouselListMessage.vue'
 import ListMessage from './ListMessage.vue'
 import ImageMessage from './ImageMessage.vue'
 import FormMessage from './FormMessage.vue'
 import FormResponseMessage from './FormResponseMessage.vue'
 import ButtonMessage from './ButtonMessage.vue'
 import ButtonResponseMessage from './ButtonResponseMessage.vue'
+import RichMessage from './RichMessage.vue'
 import TextMessage from './TextMessage.vue'
 import LongTextMessage from './LongTextMessage.vue'
 import FileMessage from './FileMessage.vue'
@@ -55,12 +59,14 @@ export default {
   },
   components: {
     DatetimeFakeMessage,
+    CarouselListMessage,
     ListMessage,
     ImageMessage,
     FormMessage,
     FormResponseMessage,
     ButtonMessage,
     ButtonResponseMessage,
+    RichMessage,
     TextMessage,
     LongTextMessage,
     FileMessage,
@@ -201,22 +207,6 @@ export default {
   }
 }
 
-.sc-message--text {
-  padding: 10px 12px;
-  border-radius: 6px;
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 1.4;
-  white-space: pre-wrap;
-  -webkit-font-smoothing: subpixel-antialiased;
-}
-.sc-message--content.sent .sc-message--text {
-  color: white;
-  background-color: #4e8cff;
-  max-width: calc(100% - 120px);
-  word-wrap: break-word;
-}
-
 .sc-message--author {
   color: white;
   background-color: black;
@@ -226,14 +216,6 @@ export default {
   color: black;
   background-color: white;
   max-width: calc(100% - 120px);
-  word-wrap: break-word;
-}
-
-.sc-message--content.received .sc-message--text {
-  color: #263238;
-  background-color: #f4f7f9;
-  margin-right: 40px;
-  max-width: calc(100% - 40px);
   word-wrap: break-word;
 }
 </style>
