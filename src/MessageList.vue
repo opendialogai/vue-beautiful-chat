@@ -96,4 +96,9 @@ export default {
   background-size: 100%;
   padding: 20px 0px;
 }
+
+.sc-chat-window.fullscreen .sc-message-list {
+  padding-left: 20px;
+  padding-right: 20px;
+}
 </style>

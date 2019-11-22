@@ -145,6 +145,10 @@ export default {
   flex-direction: column;
 }
 
+.sc-chat-window.fullscreen .sc-message {
+  width: 100%;
+}
+
 .sc-message--content {
   width: 100%;
   display: flex;

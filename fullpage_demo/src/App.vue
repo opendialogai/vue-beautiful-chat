@@ -1,6 +1,5 @@
 <template>
   <div :style="{background: backgroundColor}">
-    <Header :colors="colors" :chosenColor="chosenColor" />
     <beautiful-chat
       :agentProfile="agentProfile"
       :expand="expandChat"
@@ -9,7 +8,7 @@
       :messageList="messageList"
       :newMessagesCount="newMessagesCount"
       :isOpen="isChatOpen"
-      :close="toggleChatOpen"
+      :close="closeChat"
       :open="openChat"
       :on-button-click="onButtonClick"
       :on-form-button-click="onFormButtonClick"
@@ -19,34 +18,17 @@
       :showFile="true"
       :showTypingIndicator="showTypingIndicator"
       :colors="colors"
-      :alwaysScrollToBottom="alwaysScrollToBottom" />
-      <p class="text-center toggle">
-        <a v-if="!isChatOpen" :style="{color: linkColor}" href="#" @click.prevent="openChat()">Open the chat window</a>
-        <a v-else :style="{color: linkColor}" href="#" @click.prevent="closeChat()">Close the chat window</a>
-      </p>
-      <p class="text-center colors">
-        <a :style="{background: availableColors.blue.launcher.bg}" href="#" @click.prevent="setColor('blue')">Blue</a>
-        <a :style="{background: availableColors.red.launcher.bg}" href="#" @click.prevent="setColor('red')">Red</a>
-        <a :style="{background: availableColors.green.launcher.bg}" href="#" @click.prevent="setColor('green')">Green</a>
-        <a :style="{background: availableColors.dark.launcher.bg}" href="#" @click.prevent="setColor('dark')">Dark</a>
-      </p>
-    <TestArea :onMessage="handleMessageFromTextArea" :onTyping="handleTyping" :colors="colors" :chosenColor="chosenColor" />
-    <Footer :colors="colors" :chosenColor="chosenColor" />
+      :alwaysScrollToBottom="alwaysScrollToBottom"
+      :fullScreen="true" />
   </div>
 </template>
 
 <script>
 import messageHistory from './messageHistory'
-import Header from './Header.vue'
-import Footer from './Footer.vue'
-import TestArea from './TestArea.vue'
 import availableColors from './colors'
 
 export default {
   name: 'app',
-  components: {
-    Header, Footer, TestArea
-  },
   data() {
     return {
       agentProfile: {
@@ -55,7 +37,7 @@ export default {
       },
       messageList: messageHistory,
       newMessagesCount: 0,
-      isChatOpen: false,
+      isChatOpen: true,
       isExpand: false,
       showTypingIndicator: false,
       colors: null,
@@ -87,33 +69,11 @@ export default {
     closeChat () {
       this.isChatOpen = false
     },
-    toggleChatOpen() {
-      this.isChatOpen = !this.isChatOpen
-    },
     onButtonClick() {
 
     },
     onFormButtonClick(data, msg) {
-      const responseData = {};
-      const newMessageText = [];
 
-      msg.data.elements.forEach((element) => {
-        responseData[element.name] = data[element.name].value;
-
-        if (element.display) {
-          newMessageText.push(`${element.display}: ${data[element.name].value}`);
-        } else {
-          newMessageText.push(data[element.name].value);
-        }
-      });
-
-      responseData.text = newMessageText.join('<br>');
-
-      this.messageList.push({
-        type: 'form_response',
-        author: 'me',
-        data: responseData,
-      });
     },
     onLinkClick(url) {
 
@@ -122,7 +82,7 @@ export default {
 
     },
     expandChat() {
-      this.isExpand = !this.isExpand;
+
     },
     setColor (color) {
       this.colors = this.availableColors[color]
