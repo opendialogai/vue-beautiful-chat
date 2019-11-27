@@ -6,6 +6,10 @@
     <div v-else class="sc-header--expand-button" ></div>
     <img v-if="imageUrl" class="sc-header--img" :src="imageUrl" alt="" />
     <div class="sc-header--team-name">{{teamName}}</div>
+    <div v-if="showRestartButton" @click="onRestartButtonClick" class="sc-header--restart-button">
+      <img src="./assets/restart.svg" />
+      <span>Restart</span>
+    </div>
     <div class="sc-header--minimize-button">
       <svg width="18px" height="18px" viewBox="0 0 18 18" class="minimize">
         <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
@@ -42,6 +46,14 @@ export default {
     onExpand: {
       type: Function,
       required: true
+    },
+    onRestartButtonClick: {
+      type: Function,
+      required: true
+    },
+    showRestartButton: {
+      type: Boolean,
+      default: () => false
     },
     showExpandButton: {
       type: Boolean,
@@ -95,6 +107,16 @@ export default {
 }
 .sc-chat-window.expanded .sc-header--expand-button img {
   transform: rotate(180deg);
+}
+
+.sc-header--restart-button img {
+  vertical-align: middle;
+  height: 22px;
+  margin: 9px 0;
+}
+.sc-header--restart-button span {
+  vertical-align: middle;
+  margin: 9px 5px;
 }
 
 .sc-header--minimize-button {
