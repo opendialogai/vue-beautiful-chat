@@ -5,7 +5,7 @@
     </div>
     <div v-else class="sc-header--expand-button" ></div>
     <img v-if="imageUrl" class="sc-header--img" :src="imageUrl" alt="" />
-    <div class="sc-header--team-name">{{teamName}}</div>
+    <div class="sc-header--team-name" v-html="teamName"></div>
     <div class="sc-header--minimize-button">
       <svg width="18px" height="18px" viewBox="0 0 18 18" class="minimize">
         <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
