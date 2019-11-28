@@ -1,32 +1,34 @@
 <template>
   <div class="sc-header" @click="onClose" :style="{background: colors.header.bg, color: colors.header.text}">
-    <div v-if="showExpandButton" class="sc-header--expand-button">
-      <img @click.stop="onExpand" src="./assets/pop_out.svg" />
-    </div>
-    <div v-else class="sc-header--expand-button" ></div>
-    <img v-if="imageUrl" class="sc-header--img" :src="imageUrl" alt="" />
-    <div class="sc-header--team-name">{{teamName}}</div>
-    <div v-if="showRestartButton" @click="onRestartButtonClick" class="sc-header--restart-button">
-      <img src="./assets/restart.svg" />
-      <span>Restart</span>
-    </div>
-    <div class="sc-header--minimize-button">
-      <svg width="18px" height="18px" viewBox="0 0 18 18" class="minimize">
-        <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-          <g>
-            <polygon id="Rectangle" :fill="colors.minimizeButton.bg" fill-rule="nonzero" points="5 7 13 7 8.99257813 11.3664551"></polygon>
-            <rect id="Rectangle" :stroke="colors.minimizeButton.bg" x="0.5" y="0.5" width="17" height="17" rx="3"></rect>
+    <div class="sc-header-wrapper">
+      <div v-if="showExpandButton" class="sc-header--expand-button">
+        <img @click.stop="onExpand" src="./assets/pop_out.svg" />
+      </div>
+      <div v-else class="sc-header--expand-button" ></div>
+      <img v-if="imageUrl" class="sc-header--img" :src="imageUrl" alt="" />
+      <div class="sc-header--team-name">{{teamName}}</div>
+      <div v-if="showRestartButton" @click="onRestartButtonClick" class="sc-header--restart-button">
+        <img src="./assets/restart.svg" />
+        <span>Restart</span>
+      </div>
+      <div class="sc-header--minimize-button">
+        <svg width="18px" height="18px" viewBox="0 0 18 18" class="minimize">
+          <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+            <g>
+              <polygon id="Rectangle" :fill="colors.minimizeButton.bg" fill-rule="nonzero" points="5 7 13 7 8.99257813 11.3664551"></polygon>
+              <rect id="Rectangle" :stroke="colors.minimizeButton.bg" x="0.5" y="0.5" width="17" height="17" rx="3"></rect>
+            </g>
           </g>
-        </g>
-      </svg>
-      <svg width="18px" height="18px" viewBox="0 0 18 18" class="maximize">
-        <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-          <g>
-            <polygon id="Rectangle" :fill="colors.minimizeButton.bg" fill-rule="nonzero" transform="translate(9.000000, 9.183228) rotate(-180.000000) translate(-9.000000, -9.183228) " points="5 7.0000009 13 7.0000009 8.99257813 11.366456"></polygon>
-            <rect id="Rectangle" :stroke="colors.minimizeButton.bg" x="0.5" y="0.5" width="17" height="17" rx="3"></rect>
+        </svg>
+        <svg width="18px" height="18px" viewBox="0 0 18 18" class="maximize">
+          <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+            <g>
+              <polygon id="Rectangle" :fill="colors.minimizeButton.bg" fill-rule="nonzero" transform="translate(9.000000, 9.183228) rotate(-180.000000) translate(-9.000000, -9.183228) " points="5 7.0000009 13 7.0000009 8.99257813 11.366456"></polygon>
+              <rect id="Rectangle" :stroke="colors.minimizeButton.bg" x="0.5" y="0.5" width="17" height="17" rx="3"></rect>
+            </g>
           </g>
-        </g>
-      </svg>
+        </svg>
+      </div>
     </div>
   </div>
 </template>
@@ -75,8 +77,12 @@ export default {
   box-shadow: 0 1px 4px rgba(0,0,0,.2);
   position: relative;
   box-sizing: border-box;
-  display: flex;
   cursor: pointer;
+}
+
+.sc-header-wrapper {
+  display: flex;
+  height: 100%;
 }
 
 .sc-header--img {
