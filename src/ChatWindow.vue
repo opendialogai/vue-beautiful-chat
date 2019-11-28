@@ -1,6 +1,7 @@
 <template>
-  <div class="sc-chat-window" :class="{opened: isOpen, closed: !isOpen, expanded: isExpand}">
+  <div class="sc-chat-window" :class="{opened: isOpen, closed: !isOpen, expanded: isExpand, fullscreen: fullScreen}">
     <Header
+      v-if="!fullScreen"
       :teamName="agentProfile.teamName"
       :imageUrl="agentProfile.imageUrl"
       :onClose="onClose"
@@ -61,6 +62,10 @@ export default {
     contentEditable: {
       type: Boolean,
       default: true
+    },
+    fullScreen: {
+      type: Boolean,
+      default: false
     },
     showEmoji: {
       type: Boolean,
@@ -192,6 +197,19 @@ export default {
   transition: 0.3s ease-in-out;
   border-radius: 10px;
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+.sc-chat-window.expanded {
+  width: 490px;
+}
+
+.sc-chat-window.fullscreen {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  max-height: 100vh;
+  bottom: 0;
+  right: 0;
 }
 
 .sc-chat-window.closed {

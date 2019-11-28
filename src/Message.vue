@@ -18,7 +18,7 @@
       <SystemMessage v-else-if="message.type === 'system'" :data="message.data" :messageColors="determineMessageColors()" />
       <ButtonMessage v-else-if="message.type === 'button'" :message="message" :data="message.data" :messageColors="determineMessageColors()" :colors="colors" :onButtonClick="onButtonClick" />
       <ButtonResponseMessage v-else-if="message.type === 'button_response'" :data="message.data" :messageColors="determineMessageColors()" />
-      <FormMessage v-else-if="message.type === 'webchat_form'" :message="message" :data="message.data" :messageColors="determineMessageColors()" :colors="colors" :onFormButtonClick="onFormButtonClick" />
+      <FormMessage v-else-if="message.type === 'form'" :message="message" :data="message.data" :messageColors="determineMessageColors()" :colors="colors" :onFormButtonClick="onFormButtonClick" />
       <FormResponseMessage v-else-if="message.type === 'form_response'" :data="message.data" :messageColors="determineMessageColors()" />
       <ImageMessage v-else-if="message.type === 'image'" :data="message.data" :messageColors="determineMessageColors()" />
       <ListMessage v-else-if="message.type === 'list'" :message="message" :data="message.data" :messageColors="determineMessageColors()" :colors="colors" :onButtonClick="onListButtonClick" />
@@ -143,6 +143,10 @@ export default {
   padding-bottom: 10px;
   display: flex;
   flex-direction: column;
+}
+
+.sc-chat-window.fullscreen .sc-message {
+  width: 100%;
 }
 
 .sc-message--content {

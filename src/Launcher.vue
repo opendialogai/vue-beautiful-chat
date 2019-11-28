@@ -27,6 +27,7 @@
       :buttonText="buttonText"
       :confirmationMessage="confirmationMessage"
       :initialText="initialText"
+      :fullScreen="fullScreen"
     />
   </div>
 </template>
@@ -40,6 +41,10 @@ export default {
       default: true
     },
     showEmoji: {
+      type: Boolean,
+      default: false
+    },
+    fullScreen: {
       type: Boolean,
       default: false
     },

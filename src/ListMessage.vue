@@ -10,7 +10,7 @@
 
       <div class="sc-message--list--button">
         <template v-if="element.button.url">
-          <a :href="element.button.url" :target="element.button.link_new_tab ? '_blank' : '_parent'">{{ element.button.text }}</a>
+          <a :href="element.button.url" :target="element.button.link_new_tab ? '_blank' : '_parent'" :style="{backgroundColor: colors.button.bg, color: colors.button.text, '--button-hover': colors.button.hoverbg}">{{ element.button.text }}</a>
         </template>
         <template v-else-if="element.button.callback">
           <button @click="_handleClick(element.button.callback)" :style="{backgroundColor: colors.button.bg, color: colors.button.text, '--button-hover': colors.button.hoverbg}">
@@ -102,7 +102,7 @@ export default {
   text-align: center;
 }
 .sc-message--list .sc-message--list--button a:hover {
-  background-color: blue;
+  background-color: var(--button-hover) !important;
 }
 .sc-message--list .sc-message--list--button button {
   cursor: pointer;

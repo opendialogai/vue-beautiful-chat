@@ -210,6 +210,10 @@ export default {
   outline: none;
 }
 
+.sc-chat-window.fullscreen .sc-user-input--text {
+  width: calc(100% - 120px);
+}
+
 .sc-user-input--buttons {
   width: 100px;
   position: absolute;
