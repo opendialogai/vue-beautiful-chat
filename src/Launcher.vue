@@ -185,6 +185,11 @@ export default {
             hoverbg: '#0000ff',
             text: '#ffffff'
           },
+          externalButton: {
+            bg: '#4e8cff',
+            hoverbg: '#0000ff',
+            text: '#ffffff'
+          },
           minimizeButton: {
             bg: '#000000'
           }

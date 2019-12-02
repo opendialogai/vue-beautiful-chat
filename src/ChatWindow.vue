@@ -27,6 +27,9 @@
         :contentEditable="contentEditable"
         :showEmoji="showEmoji"
         :onSubmit="onUserInputSubmit"
+        :onButtonClick="onButtonClick"
+        :externalButtons="externalButtons"
+        :lastMessage="lastMessage"
         :showFile="showFile"
         :placeholder="placeholder"
         :colors="colors" />
@@ -176,9 +179,22 @@ export default {
       let messages = this.messageList
 
       return messages
+    },
+    externalButtons() {
+      if (this.messages.length > 0) {
+        const lastMessage = this.messages[this.messages.length - 1]
+        if (lastMessage.type === 'button' && lastMessage.data.external) {
+          return lastMessage.data.buttons
+        }
+      }
+
+      return []
+    },
+    lastMessage() {
+      if (this.messages.length == 0) return {}
+      return this.messages[this.messages.length - 1]
     }
-  },
-  methods: {}
+  }
 }
 </script>
 <style scoped>
