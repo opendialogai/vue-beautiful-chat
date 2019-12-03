@@ -1,5 +1,5 @@
 <template>
-  <div class="sc-external-buttons-row" :style="{background: colors.messageList.bg}">
+  <div v-if="externalButtons.length" class="sc-external-buttons-row" :style="{background: colors.messageList.bg}">
     <button class="sc-external-buttons-element" v-for="(externalButton, idx) in externalButtons" v-on:click="$emit('sendExternalButton', externalButton)" :style="{background: colors.externalButton.bg, color: colors.externalButton.text, '--button-hover': colors.externalButton.hoverbg}" :key="idx">{{externalButton.text}}</button>
   </div>
 </template>
