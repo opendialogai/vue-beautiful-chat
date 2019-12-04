@@ -6,7 +6,7 @@
       </div>
       <div v-else class="sc-header--expand-button" ></div>
       <img v-if="imageUrl" class="sc-header--img" :src="imageUrl" alt="" />
-      <div class="sc-header--team-name">{{teamName}}</div>
+      <div class="sc-header--team-name" v-html="teamName"></div>
       <div v-if="showRestartButton" @click="onRestartButtonClick" class="sc-header--restart-button">
         <img src="./assets/restart.svg" />
         <span>Restart</span>
