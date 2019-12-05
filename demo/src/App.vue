@@ -15,8 +15,10 @@
       :on-form-button-click="onFormButtonClick"
       :on-list-button-click="onListButtonClick"
       :on-link-click="onLinkClick"
+      :on-restart-button-click="onRestartButtonClick"
       :showEmoji="true"
       :showFile="true"
+      :showRestartButton="true"
       :showTypingIndicator="showTypingIndicator"
       :colors="colors"
       :alwaysScrollToBottom="alwaysScrollToBottom" />
@@ -114,6 +116,9 @@ export default {
         author: 'me',
         data: responseData,
       });
+    },
+    onRestartButtonClick() {
+
     },
     onLinkClick(url) {
 

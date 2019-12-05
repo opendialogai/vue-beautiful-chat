@@ -11,12 +11,14 @@
       :onButtonClick="onButtonClick"
       :onFormButtonClick="onFormButtonClick"
       :onListButtonClick="onListButtonClick"
+      :onRestartButtonClick="onRestartButtonClick"
       :onLinkClick="onLinkClick"
       :contentEditable="contentEditable"
       :showEmoji="showEmoji"
       :showFile="showFile"
       :showExpandButton="showExpandButton"
       :placeholder="placeholder"
+      :showRestartButton="showRestartButton"
       :showTypingIndicator="showTypingIndicator"
       :colors="colors"
       :alwaysScrollToBottom="alwaysScrollToBottom"
@@ -92,6 +94,10 @@ export default {
       type: String,
       default: 'Write a reply'
     },
+    showRestartButton: {
+      type: Boolean,
+      default: () => false
+    },
     showTypingIndicator: {
       type: Boolean,
       default: () => true
@@ -133,6 +139,10 @@ export default {
       required: true
     },
     onLinkClick: {
+      type: Function,
+      required: true
+    },
+    onRestartButtonClick: {
       type: Function,
       required: true
     },

@@ -7,6 +7,8 @@
       :onClose="onClose"
       :onExpand="onExpand"
       :showExpandButton="showExpandButton"
+      :showRestartButton="showRestartButton"
+      :onRestartButtonClick="onRestartButtonClick"
       :colors="colors"
     />
     <MessageList
@@ -114,6 +116,10 @@ export default {
       type: Function,
       required: true
     },
+    onRestartButtonClick: {
+      type: Function,
+      required: true
+    },
     messageList: {
       type: Array,
       default: () => []
@@ -129,6 +135,10 @@ export default {
     placeholder: {
       type: String,
       default: 'Write a reply'
+    },
+    showRestartButton: {
+      type: Boolean,
+      default: () => false
     },
     showTypingIndicator: {
       type: Boolean,
