@@ -1,5 +1,6 @@
 <template>
   <div>
+    <ExternalButtons :externalButtons="externalButtons" v-on:sendExternalButton="_submitExternalButton" :colors="colors"/>
     <div v-if="file" class='file-container' :style="{backgroundColor: colors.userInput.text, color: colors.userInput.bg}">
       <span class='icon-file-message'><img src="./assets/file.svg" alt='genericFileIcon' height="15" /></span>
       {{file.name}}
@@ -40,12 +41,14 @@
 import EmojiIcon from './EmojiIcon.vue'
 import FileIcons from './FileIcons.vue'
 import SendIcon from './SendIcon.vue'
+import ExternalButtons from './ExternalButtons.vue'
 
 export default {
   components: {
     EmojiIcon,
     FileIcons,
-    SendIcon
+    SendIcon,
+    ExternalButtons
   },
   props: {
     contentEditable: {
@@ -56,6 +59,10 @@ export default {
       type: Boolean,
       default: false
     },
+    externalButtons: {
+      type: Array,
+      default: () => []
+    },
     showFile: {
       type: Boolean,
       default: false
@@ -64,9 +71,17 @@ export default {
       type: Function,
       required: true
     },
+    onButtonClick: {
+      type: Function,
+      required: true
+    },
     placeholder: {
       type: String,
       default: 'Write a reply'
+    },
+    lastMessage: {
+      type: Object,
+      required: true
     },
     colors: {
       type: Object,
@@ -116,6 +131,9 @@ export default {
           this.textEntered = true;
         }
       }
+    },
+    _submitExternalButton(button) {
+      this.onButtonClick(button, this.lastMessage)
     },
     _submitText (event) {
       const text = this.$refs.userInput.textContent

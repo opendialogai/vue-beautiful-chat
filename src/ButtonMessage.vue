@@ -4,7 +4,7 @@
       <span v-html="data.text"></span>
     </div>
 
-    <template v-if="data.buttons.length">
+    <template v-if="data.buttons.length && !data.external">
       <div class="sc-message--button--buttons">
         <button v-for="(button, idx) in data.buttons" :key="idx" @click="_handleClick(button)" :style="{backgroundColor: colors.button.bg, color: colors.button.text, '--button-hover': colors.button.hoverbg}">
           {{button.text}}

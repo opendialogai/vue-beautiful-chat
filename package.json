@@ -39,7 +39,7 @@
     "extract-text-webpack-plugin": "^3.0.2",
     "file-loader": "^1.1.11",
     "img-loader": "^3.0.1",
-    "node-sass": "^4.12.0",
+    "node-sass": "^4.13.0",
     "sass-loader": "^6.0.7",
     "standard": "^11.0.0",
     "uglifyjs-webpack-plugin": "^2.2.0",
