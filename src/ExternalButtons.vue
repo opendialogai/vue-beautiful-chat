@@ -1,12 +1,14 @@
 <template>
-  <transition
-    enter-active-class="fadeIn"
-    leave-active-class="fadeOut"
-  >
-    <div v-if="externalButtons.length" :class="buttonsRowClass" class="sc-external-buttons-row" :style="{background: colors.messageList.bg}" style="animation-duration: 2s">
-      <button class="sc-external-buttons-element" :class="(currentId === idx) ? 'button-clicked' : ''" v-for="(externalButton, idx) in externalButtons" v-on:click="_handleClick(externalButton, idx)" :style="{background: colors.externalButton.bg, color: colors.externalButton.text, '--button-hover': colors.externalButton.hoverbg}" :key="idx">{{externalButton.text}}</button>
-    </div>
-  </transition>
+  <div :style="{background: colors.messageList.bg}">
+    <transition
+      enter-active-class="fadeIn"
+      leave-active-class="fadeOut"
+    >
+      <div v-if="externalButtons.length" :class="buttonsRowClass" class="sc-external-buttons-row" style="animation-duration: 2s">
+        <button class="sc-external-buttons-element" :class="(currentId === idx) ? 'button-clicked' : ''" v-for="(externalButton, idx) in externalButtons" v-on:click="_handleClick(externalButton, idx)" :style="{background: colors.externalButton.bg, color: colors.externalButton.text, '--button-hover': colors.externalButton.hoverbg}" :key="idx">{{externalButton.text}}</button>
+      </div>
+    </transition>
+  </div>
 </template>
 
 <script>

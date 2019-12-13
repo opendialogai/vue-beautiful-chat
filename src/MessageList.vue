@@ -1,5 +1,5 @@
 <template>
-  <div class="sc-message-list" ref="scrollList" :style="{backgroundColor: colors.messageList.bg}">
+  <div class="sc-message-list" :class="scrollClass" ref="scrollList" :style="{backgroundColor: colors.messageList.bg}">
     <Message v-for="(message, idx) in messages"
              :message="message"
              :read="message.read"
@@ -66,11 +66,22 @@ export default {
       required: true
     }
   },
+  data () {
+    return {
+      scrollClass: ''
+    }
+  },
   methods: {
     _scrollDown () {
       if (this.$refs.scrollList) {
         this.$refs.scrollList.scrollTop = this.$refs.scrollList.scrollHeight
       }
+    },
+    _disableScroll () {
+      this.scrollClass = 'no-scroll'
+    },
+    _enableScroll () {
+      this.scrollClass = ''
     },
     shouldScrollToBottom() {
       return this.alwaysScrollToBottom || (this.$refs.scrollList.scrollTop > this.$refs.scrollList.scrollHeight - 300)
@@ -80,6 +91,12 @@ export default {
     this._scrollDown()
     this.$root.$on('scroll-down-message-list', () => {
       this._scrollDown()
+    })
+    this.$root.$on('disable-message-list-scroll', () => {
+      this._disableScroll()
+    })
+    this.$root.$on('enable-message-list-scroll', () => {
+      this._enableScroll()
     })
   },
   updated () {
@@ -95,6 +112,10 @@ export default {
   overflow-y: auto;
   background-size: 100%;
   padding: 20px 0px;
+}
+
+.sc-message-list.no-scroll {
+  overflow-y: hidden;
 }
 
 .sc-chat-window.fullscreen .sc-message-list {
