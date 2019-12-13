@@ -59,7 +59,7 @@ export default {
       }
     },
     handleTyping (text) {
-      this.showTypingIndicator = text.length > 0;
+      this.showTypingIndicator = text.length > 0
     },
     onMessageWasSent (msg) {
       this.messageList.push(msg)
@@ -71,8 +71,31 @@ export default {
     closeChat () {
       this.isChatOpen = false
     },
-    onButtonClick() {
+    onButtonClick(button, msg) {
+      if (msg.data.external) {
+        this.$nextTick(() => {
+          const messages = document.querySelectorAll('.sc-message')
+          var lastMessageRect = messages[messages.length - 2].getBoundingClientRect()
 
+          const buttonClicked = document.querySelector('.sc-external-buttons-element.button-clicked')
+          var buttonClickedRect = buttonClicked.getBoundingClientRect()
+
+          const left = lastMessageRect.left + lastMessageRect.width - buttonClickedRect.width - buttonClickedRect.left - 19
+          const top = buttonClickedRect.top - lastMessageRect.top + 15
+
+          buttonClicked.style.transform = `translate(${left}px, -${top}px)`
+
+          setTimeout(() => {
+            msg.data.buttons = []
+
+            this.messageList.push({author: 'me', type: 'button_response', data: { text: button.text }})
+
+            this.$nextTick(() => {
+              this.$root.$emit('scroll-down-message-list')
+            })
+          }, 2000)
+        })
+      }
     },
     onFormButtonClick(data, msg) {
 
@@ -166,5 +189,20 @@ body {
 
 .toggle a {
   text-decoration: none;
+}
+
+.sc-message--button-response {
+  background: none !important;
+}
+.sc-message--button-response .button {
+  background-color: #4e8cff !important;
+  border-bottom-right-radius: 0 !important;
+  color: #fff !important;
+}
+
+.sc-external-buttons-row .sc-external-buttons-element.button-clicked {
+  border-radius: 30px;
+  border-bottom-right-radius: 0;
+  padding: 12px 17px;
 }
 </style>

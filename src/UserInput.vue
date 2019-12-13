@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="sc-user-input-wrapper">
     <ExternalButtons :externalButtons="externalButtons" v-on:sendExternalButton="_submitExternalButton" :colors="colors"/>
     <div v-if="file" class='file-container' :style="{backgroundColor: colors.userInput.text, color: colors.userInput.bg}">
       <span class='icon-file-message'><img src="./assets/file.svg" alt='genericFileIcon' height="15" /></span>
