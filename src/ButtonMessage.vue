@@ -1,6 +1,6 @@
 <template>
-  <div class="sc-message--button" :style="messageColors">
-    <div class="sc-message--button--text" v-linkified>
+  <div ref="message" class="sc-message--button" :style="messageColors">
+    <div class="sc-message--button--text fade-enter-active" v-linkified>
       <span v-html="data.text"></span>
     </div>
 
@@ -39,6 +39,36 @@ export default {
   methods: {
     _handleClick (button) {
       this.onButtonClick(button, this.message)
+    }
+  },
+  mounted () {
+    if (this.data.animate) {
+      const w = (this.$refs.message.offsetWidth + 1) + 'px'
+      const h = this.$refs.message.offsetHeight + 'px'
+
+      const typingIndicator = document.querySelector('.sc-typing-indicator')
+
+      if (typingIndicator) {
+        const typingIndicatorRect = typingIndicator.getBoundingClientRect()
+
+        this.$refs.message.style.width = typingIndicatorRect.width + 'px'
+        this.$refs.message.style.height = typingIndicatorRect.height + 'px'
+        this.$refs.message.style.opacity = 1
+
+        setTimeout(() => {
+          this.$refs.message.style.width = w
+          this.$refs.message.style.height = h
+        }, 1)
+      } else {
+        this.$refs.message.style.width = '94px'
+        this.$refs.message.style.height = '66px'
+        this.$refs.message.style.opacity = 1
+
+        setTimeout(() => {
+          this.$refs.message.style.width = w
+          this.$refs.message.style.height = h
+        }, 500)
+      }
     }
   }
 }
@@ -80,5 +110,6 @@ export default {
   white-space: pre-wrap;
   word-wrap: break-word;
   -webkit-font-smoothing: subpixel-antialiased;
+  animation-duration: 0s;
 }
 </style>

@@ -1,9 +1,13 @@
 <template>
-  <div class="sc-typing-indicator" :style="messageColors">
-    <span :style="{'background-color': messageColors.color}"></span>
-    <span :style="{'background-color': messageColors.color}"></span>
-    <span :style="{'background-color': messageColors.color}"></span>
-  </div>
+  <transition
+    leave-active-class="fadeOut"
+  >
+    <div class="sc-typing-indicator" :style="messageColors">
+      <span :style="{'background-color': messageColors.color}"></span>
+      <span :style="{'background-color': messageColors.color}"></span>
+      <span :style="{'background-color': messageColors.color}"></span>
+    </div>
+  </transition>
 </template>
 <script>
 export default {
@@ -20,6 +24,7 @@ export default {
   text-align: center;
   padding: 10px 12px;
   border-radius: 6px;
+  animation-duration: 0s;
 }
 
 .sc-typing-indicator span {
