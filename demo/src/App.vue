@@ -73,11 +73,25 @@ export default {
     handleMessageFromTextArea (text) {
       if (text.length > 0) {
         this.newMessagesCount = this.isChatOpen ? this.newMessagesCount : this.newMessagesCount + 1
-        this.messageList.push({author: 'them', type: 'text', data: { text }})
+
+        const lastMessage = this.messageList[this.messageList.length - 1]
+
+        if (lastMessage.type == 'typing') {
+          lastMessage.type = 'text'
+          lastMessage.data = { text }
+        } else {
+          this.messageList.push({author: 'them', type: 'text', data: { text }})
+        }
       }
     },
     handleTyping (text) {
-      this.showTypingIndicator = text.length > 0;
+      if (!this.showTypingIndicator && text.length > 0) {
+        this.showTypingIndicator = true;
+        const msg = { author: 'them', type: 'typing' }
+        this.messageList.push(msg)
+      } else if (text.length == 0) {
+        this.showTypingIndicator = false;
+      }
     },
     onMessageWasSent (msg) {
       this.messageList.push(msg)

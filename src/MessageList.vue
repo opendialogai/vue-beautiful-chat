@@ -10,7 +10,7 @@
              :onLinkClick="onLinkClick"
              :onListButtonClick="onListButtonClick"
              :onFormButtonClick="onFormButtonClick" />
-    <Message v-show="showTypingIndicator"
+    <Message v-if="showTypingIndicator"
              :message="{author: 'them', type: 'typing'}"
              :chatImageUrl="chatImageUrl"
              :colors="colors"
