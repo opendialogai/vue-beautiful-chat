@@ -69,6 +69,11 @@ export default {
           this.$refs.message.style.height = h
         }, 500)
       }
+
+      window.addEventListener('resize', () => {
+        this.$refs.message.style.width = null
+        this.$refs.message.style.height = null
+      })
     }
   }
 }

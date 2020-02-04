@@ -158,10 +158,13 @@ export default {
 .sc-message--content {
   width: 100%;
   display: flex;
+  align-items: flex-start;
+  flex-direction: column;
 }
 
 .sc-message--content.sent {
   justify-content: flex-end;
+  align-items: flex-end;
 }
 
 .sc-message--name {
