@@ -10,7 +10,7 @@
              :onLinkClick="onLinkClick"
              :onListButtonClick="onListButtonClick"
              :onFormButtonClick="onFormButtonClick" />
-    <Message v-show="showTypingIndicator"
+    <Message v-if="showTypingIndicator"
              :message="{author: 'them', type: 'typing'}"
              :chatImageUrl="chatImageUrl"
              :colors="colors"
@@ -69,7 +69,16 @@ export default {
   methods: {
     _scrollDown () {
       if (this.$refs.scrollList) {
-        this.$refs.scrollList.scrollTop = this.$refs.scrollList.scrollHeight
+        if (this.$refs.scrollList.scrollHeight > this.$refs.scrollList.offsetHeight) {
+          const scrollStep = (this.$refs.scrollList.scrollHeight - this.$refs.scrollList.offsetHeight - this.$refs.scrollList.scrollTop) / 15
+
+          let i = 0
+          const scrollInterval = setInterval(() => {
+            this.$refs.scrollList.scrollTop = this.$refs.scrollList.scrollTop + scrollStep;
+            i = i + 1
+            if (i == 15) clearInterval(scrollInterval)
+          }, 30)
+        }
       }
     },
     shouldScrollToBottom() {

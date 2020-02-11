@@ -64,6 +64,11 @@ export default {
       hoverbg: '#114c13',
       text: '#ffffff'
     },
+    externalButton: {
+      bg: '#388E3C',
+      hoverbg: '#114c13',
+      text: '#ffffff'
+    },
     minimizeButton: {
       bg: '#000000'
     }
@@ -96,6 +101,11 @@ export default {
       hoverbg: '#0000ff',
       text: '#ffffff'
     },
+    externalButton: {
+      bg: '#4e8cff',
+      hoverbg: '#0000ff',
+      text: '#ffffff'
+    },
     minimizeButton: {
       bg: '#fff'
     }
@@ -124,6 +134,11 @@ export default {
       text: '#ecf0f1'
     },
     button: {
+      bg: '#34495e',
+      hoverbg: '#2a2a3e',
+      text: '#ecf0f1'
+    },
+    externalButton: {
       bg: '#34495e',
       hoverbg: '#2a2a3e',
       text: '#ecf0f1'

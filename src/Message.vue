@@ -1,5 +1,5 @@
 <template>
-  <div class="sc-message">
+  <div class="sc-message fadeUp-enter-active" :class="'sc-message-' + message.type">
     <span v-if="message.author != 'me' && authorName" class="sc-message--name">{{ authorName }}</span>
     <div class="sc-message--content" :class="{
         internal: message.data && message.data.internal,
@@ -7,6 +7,8 @@
         received: message.author === 'them',
         author: message.type === 'author',
         system: message.type === 'system',
+        'first-internal-message': message.data && message.data.firstInternal,
+        'last-internal-message': message.data && message.data.lastInternal,
       }">
       <CarouselListMessage v-if="message.type === 'list' && message.data.view_type" :message="message" :data="message.data" :messageColors="determineMessageColors()" :colors="colors" :onButtonClick="onButtonClick" :onLinkClick="onLinkClick" />
       <TextMessage v-else-if="message.type === 'text' || message.type === 'longtext_response'" :data="message.data" :messageColors="determineMessageColors()" :onLinkClick="onLinkClick" />
@@ -143,6 +145,10 @@ export default {
   padding-bottom: 10px;
   display: flex;
   flex-direction: column;
+  position: relative;
+}
+.sc-message.fadeUp-enter-active {
+  animation-duration: 0s;
 }
 
 .sc-chat-window.fullscreen .sc-message {
@@ -152,10 +158,13 @@ export default {
 .sc-message--content {
   width: 100%;
   display: flex;
+  align-items: flex-start;
+  flex-direction: column;
 }
 
 .sc-message--content.sent {
   justify-content: flex-end;
+  align-items: flex-end;
 }
 
 .sc-message--name {
