@@ -15,6 +15,9 @@
       <template v-if="element.element_type == 'number'">
         <input type="number" class="sc-message--form--element-input" v-model="form.data[element.name].value" v-on:keyup.enter="_handleClick" />
       </template>
+      <template v-if="element.element_type == 'email'">
+        <input type="email" class="sc-message--form--element-input" v-model="form.data[element.name].value" v-on:keyup.enter="_handleClick" />
+      </template>
       <template v-if="element.element_type == 'textarea'">
         <textarea class="sc-message--form--element-textarea" v-model="form.data[element.name].value" />
       </template>
@@ -86,6 +89,13 @@ export default {
         this.onFormButtonClick(this.form.data, this.message)
       }
     },
+    validateEmail (emailAddress) {
+      if (/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailAddress)) {
+        return true
+      }
+
+      return false
+    },
     validateForm () {
       this.errors = []
 
@@ -93,9 +103,15 @@ export default {
         if (element.required && this.isEmpty(this.form.data[element.name].value)) {
           this.errors.push('<em>' + element.display + '</em> field is required')
         }
+
+        if (element.element_type === 'email' && !this.isEmpty(this.form.data[element.name].value)) {
+          if (!this.validateEmail(this.form.data[element.name].value)) {
+            this.errors.push('<em>' + element.display + '</em> field is not a valid email address')
+          }
+        }
       })
     },
-    isEmpty(value) {
+    isEmpty (value) {
       return (value === null || value === undefined || value === '')
     }
   },
