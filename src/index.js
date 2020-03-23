@@ -2,6 +2,8 @@ require('vue2-animate/dist/vue2-animate.min.css')
 
 import linkify from 'vue-linkify'
 
+import { longClickDirective } from 'vue-long-click'
+
 import Launcher from './Launcher.vue'
 
 const defaultComponentName = 'beautiful-chat'
@@ -33,6 +35,8 @@ const Plugin = {
     Vue.component(this.componentName, Launcher)
 
     Vue.directive('linkified', linkify)
+
+    Vue.directive('longclick', longClickDirective({ delay: 0, interval: 400 }))
   }
 }
 

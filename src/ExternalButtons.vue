@@ -2,15 +2,17 @@
   <div v-if="externalButtons.length" class="sc-external-buttons">
     <div class="sc-external-buttons--arrows">
       <div
-        v-if="showLeftArrow"
+        v-show="showLeftArrow"
         class="sc-external-buttons--left-arrow"
-        @click="scrollLeft">
+        ref="leftArrow"
+        v-longclick="scrollLeft">
         <img src="./assets/left-arrow.svg" />
       </div>
       <div
-        v-if="showRightArrow"
+        v-show="showRightArrow"
         class="sc-external-buttons--right-arrow"
-        @click="scrollRight">
+        ref="rightArrow"
+        v-longclick="scrollRight">
         <img src="./assets/right-arrow.svg" />
       </div>
     </div>
@@ -27,6 +29,7 @@
           v-for="(externalButton, idx) in externalButtons"
           @click="_handleClick(externalButton, idx)"
           :style="{background: colors.externalButton.bg, color: colors.externalButton.text, '--button-hover': colors.externalButton.hoverbg}"
+          ref="externalButton"
           :key="idx">
           <div class="sc-external-buttons-element--top"></div>
           <div class="sc-external-buttons-element--right"></div>
@@ -80,27 +83,73 @@ export default {
   },
   methods: {
     onScroll() {
-      this.showLeftArrow = false
-      this.showRightArrow = false
+      if (this.$refs.externalButtonsRow) {
+        if (this.$refs.externalButtonsRow.scrollLeft > 0) {
+          this.showLeftArrow = true
+        } else {
+          this.$refs.leftArrow.dispatchEvent(new Event('onmouseup'))
+          this.showLeftArrow = false
+        }
 
-      if (this.$refs.externalButtonsRow.scrollLeft > 0) {
-        this.showLeftArrow = true
-      }
-
-      if (this.$refs.externalButtonsRow.scrollWidth > (this.$refs.externalButtonsRow.offsetWidth + this.$refs.externalButtonsRow.scrollLeft)) {
-        this.showRightArrow = true
+        if (this.$refs.externalButtonsRow.scrollWidth > (this.$refs.externalButtonsRow.offsetWidth + this.$refs.externalButtonsRow.scrollLeft)) {
+          this.showRightArrow = true
+        } else {
+          this.$refs.rightArrow.dispatchEvent(new Event('onmouseup'))
+          this.showRightArrow = false
+        }
       }
     },
     scrollLeft() {
-      this.$refs.externalButtonsRow.scrollLeft = this.$refs.externalButtonsRow.scrollLeft - 50
+      const rowScrollLeft = this.$refs.externalButtonsRow.scrollLeft
+
+      let scrollLeft = this.$refs.externalButtonsRow.scrollLeft
+      this.$refs.externalButton.forEach((button, i) => {
+        const style = window.getComputedStyle(button)
+        const marginLeft = parseFloat(style.getPropertyValue('margin-left'))
+        const marginRight = parseFloat(style.getPropertyValue('margin-right'))
+
+        if (((button.offsetLeft - marginLeft) < rowScrollLeft) && ((button.offsetLeft + button.offsetWidth + marginRight) >= rowScrollLeft)) {
+          scrollLeft = (i > 0) ? button.offsetLeft - marginLeft - 30 : 0
+        }
+      })
+
+      this.scroll(this.$refs.externalButtonsRow.scrollLeft, scrollLeft)
     },
     scrollRight() {
-      this.$refs.externalButtonsRow.scrollLeft = this.$refs.externalButtonsRow.scrollLeft + 50
+      const rowScrollRight = this.$refs.externalButtonsRow.offsetWidth + this.$refs.externalButtonsRow.scrollLeft
+
+      let scrollLeft = this.$refs.externalButtonsRow.scrollLeft
+      this.$refs.externalButton.forEach((button) => {
+        const style = window.getComputedStyle(button)
+        const marginLeft = parseFloat(style.getPropertyValue('margin-left'))
+        const marginRight = parseFloat(style.getPropertyValue('margin-right'))
+
+        if (((button.offsetLeft - marginLeft) <= rowScrollRight) && ((button.offsetLeft + button.offsetWidth + marginRight) > rowScrollRight)) {
+          scrollLeft = button.offsetLeft + button.offsetWidth + marginRight + 30 - this.$refs.externalButtonsRow.offsetWidth
+        }
+      })
+
+      this.scroll(this.$refs.externalButtonsRow.scrollLeft, scrollLeft)
+    },
+    scroll(oldScrollLeft, newScrollLeft) {
+      const scrollStep = (newScrollLeft - oldScrollLeft) / 15
+
+      let i = 0
+      const scrollInterval = setInterval(() => {
+        this.$refs.externalButtonsRow.scrollLeft = this.$refs.externalButtonsRow.scrollLeft + scrollStep
+        i = i + 1
+        if (i == 15) clearInterval(scrollInterval)
+      }, 20)
     },
     _handleClick(externalButton, idx) {
       this.buttonClicked = idx
       this.$emit('sendExternalButton', externalButton)
     }
+  },
+  mounted () {
+    window.addEventListener('resize', () => {
+      this.onScroll()
+    })
   }
 }
 </script>

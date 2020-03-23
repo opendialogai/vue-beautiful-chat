@@ -7656,6 +7656,13 @@ vue-loader@^15.7.2:
     vue-hot-reload-api "^2.3.0"
     vue-style-loader "^4.1.0"
 
+vue-long-click@^0.0.4:
+  version "0.0.4"
+  resolved "https://registry.yarnpkg.com/vue-long-click/-/vue-long-click-0.0.4.tgz#8679652a3c7183258a9558c1394e7d35ad4be63d"
+  integrity sha512-1/8KMsON6k8ebGqOhBZKU69EWlTLv4+LUluwUxTMNYno9t7ztk8j6rNVwewbp9hULktEoe+jBnxMFBngsPQCaQ==
+  dependencies:
+    vue "^2.5.22"
+
 vue-plain-slider@^1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/vue-plain-slider/-/vue-plain-slider-1.1.1.tgz#fef64c936ca2f900c6cdd4efba89f821aa5cab72"
@@ -7712,6 +7719,11 @@ vue@^2.1.6, vue@^2.5.20, vue@^2.6.10:
   version "2.6.10"
   resolved "https://registry.yarnpkg.com/vue/-/vue-2.6.10.tgz#a72b1a42a4d82a721ea438d1b6bf55e66195c637"
   integrity sha512-ImThpeNU9HbdZL3utgMCq0oiMzAkt1mcgy3/E6zWC/G6AaQoeuFdsl9nDhTDU3X1R6FK7nsIUuRACVcjI+A2GQ==
+
+vue@^2.5.22:
+  version "2.6.11"
+  resolved "https://registry.yarnpkg.com/vue/-/vue-2.6.11.tgz#76594d877d4b12234406e84e35275c6d514125c5"
+  integrity sha512-VfPwgcGABbGAue9+sfrD4PuwFar7gPb1yl1UK1MwXoQPAw0BKSqWfoYCT/ThFrdEVWoI51dBuyCoiNU9bZDZxQ==
 
 watchpack@^1.6.0:
   version "1.6.0"
