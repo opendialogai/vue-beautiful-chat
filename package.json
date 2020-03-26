@@ -69,6 +69,7 @@
     "babel-preset-env": "^1.7.0",
     "emoji-js": "^3.4.1",
     "vue-linkify": "^1.0.1",
+    "vue-long-click": "^0.0.4",
     "vue-plain-slider": "^1.1.1",
     "vue-select": "^3.4.0",
     "vue2-animate": "^2.1.3"
