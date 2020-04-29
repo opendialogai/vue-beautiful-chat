@@ -61,6 +61,14 @@ export default {
       type: Boolean,
       default: true
     },
+    showFullPageFormInput: {
+      type: Boolean,
+      default: true
+    },
+    showFullPageRichInput: {
+      type: Boolean,
+      default: true
+    },
     colors: {
       type: Object,
       required: true
