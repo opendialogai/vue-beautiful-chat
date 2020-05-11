@@ -24,7 +24,7 @@
       :onListButtonClick="onListButtonClick"
       :onLinkClick="onLinkClick"
     />
-    <template v-if="!showLongTextInput">
+    <template v-if="!showLongTextInput && !hideUserInput">
       <UserInput
         :contentEditable="contentEditable"
         :showEmoji="showEmoji"
@@ -36,7 +36,7 @@
         :placeholder="placeholder"
         :colors="colors" />
     </template>
-    <template v-else>
+    <template v-if="showLongTextInput">
       <LongTextUserInput
         :headerText="headerText"
         :maxInputCharacters="maxInputCharacters"
@@ -135,6 +135,10 @@ export default {
     placeholder: {
       type: String,
       default: 'Write a reply'
+    },
+    hideUserInput: {
+      type: Boolean,
+      default: () => false
     },
     showRestartButton: {
       type: Boolean,

@@ -6,6 +6,7 @@
       :agentProfile="agentProfile"
       :isOpen="isOpen"
       :isExpand="isExpand"
+      :hideUserInput="hideUserInput"
       :onClose="close"
       :onExpand="expand"
       :onButtonClick="onButtonClick"
@@ -69,6 +70,10 @@ export default {
     expand: {
       type: Function,
       required: true
+    },
+    hideUserInput: {
+      type: Boolean,
+      default: false
     },
     showFile: {
       type: Boolean,
