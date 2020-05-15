@@ -23,22 +23,24 @@
       :style="{background: colors.messageList.bg}"
       @scroll.passive="onScroll">
       <div class="sc-external-buttons-row-wrapper fade-enter-active">
-        <button
-          class="sc-external-buttons-element"
-          :class="(buttonClicked == idx) ? 'sc-external-buttons-element--clicked' : ''"
-          v-for="(externalButton, idx) in externalButtons"
-          @click="_handleClick(externalButton, idx)"
-          :style="{background: colors.externalButton.bg, color: colors.externalButton.text, '--button-hover': colors.externalButton.hoverbg}"
-          ref="externalButton"
-          :key="idx">
-          <div class="sc-external-buttons-element--top"></div>
-          <div class="sc-external-buttons-element--right"></div>
-          <div class="sc-external-buttons-element--bottom"></div>
-          <div class="sc-external-buttons-element--left"></div>
-          <div class="sc-external-buttons-element--background"></div>
+        <template v-for="(externalButton, idx) in externalButtons">
+          <button
+            v-if="externalButton.display && externalButton.text"
+            class="sc-external-buttons-element"
+            :class="(buttonClicked == idx) ? 'sc-external-buttons-element--clicked' : ''"
+            @click="_handleClick(externalButton, idx)"
+            :style="{background: colors.externalButton.bg, color: colors.externalButton.text, '--button-hover': colors.externalButton.hoverbg}"
+            ref="externalButton"
+            :key="idx">
+            <div class="sc-external-buttons-element--top"></div>
+            <div class="sc-external-buttons-element--right"></div>
+            <div class="sc-external-buttons-element--bottom"></div>
+            <div class="sc-external-buttons-element--left"></div>
+            <div class="sc-external-buttons-element--background"></div>
 
-          <span v-html="externalButton.text"></span>
-        </button>
+            <span v-html="externalButton.text"></span>
+          </button>
+        </template>
       </div>
     </div>
   </div>

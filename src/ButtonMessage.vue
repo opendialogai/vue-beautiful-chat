@@ -6,7 +6,15 @@
 
     <template v-if="data.buttons.length && !data.external">
       <div class="sc-message--button--buttons">
-        <button v-for="(button, idx) in data.buttons" :key="idx" @click="_handleClick(button)" :style="{backgroundColor: colors.button.bg, color: colors.button.text, '--button-hover': colors.button.hoverbg}" v-html="button.text"></button>
+        <template v-for="(button, idx) in data.buttons">
+          <button
+            v-if="button.display && button.text"
+            :key="idx"
+            @click="_handleClick(button)"
+            :style="{backgroundColor: colors.button.bg, color: colors.button.text, '--button-hover': colors.button.hoverbg}"
+            v-html="button.text">
+          </button>
+        </template>
       </div>
     </template>
   </div>

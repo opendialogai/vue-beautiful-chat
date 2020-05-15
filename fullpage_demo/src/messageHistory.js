@@ -4,7 +4,7 @@ export default [
   { type: 'text', author: `me`, data: { text: `This is a TEXT message`, time: `10:00` } },
   { type: 'author', author: `them`, data: { text: `THEM`, avatar: `<img src="https://a.slack-edge.com/66f9/img/avatars-teams/ava_0001-34.png" />` } },
   { type: 'text', author: `them`, data: { text: `This is a TEXT message`, time: `10:02` } },
-  { type: 'button', author: `them`, data: { text: `This is a BUTTON message`, buttons: [ { text: `Yes` }, { text: `No` } ] } },
+  { type: 'button', author: `them`, data: { text: `This is a BUTTON message`, buttons: [ { text: `Yes`, display: true }, { text: `No`, display: true }, { text: `Sometimes`, display: false }, { text: ``, display: true } ] } },
   { type: 'button_response', author: `me`, data: { text: `This is a BUTTON RESPONSE message` } },
   { type: 'webchat_form', author: `them`, data: { text: `This is a FORM message`, submit_text: `Submit`, elements: [ { element_type: `text`, name: `text`, display: `text` }, { element_type: `number`, name: `number` }, { element_type: `textarea`, name: `textarea` }, { element_type: `select`, name: `select`, options: { Option1: `Option 1`, Option2: `Option 2` } } ] } },
   { type: 'form_response', author: `me`, data: { text: `This is a FORM RESPONSE message` } },
@@ -15,5 +15,5 @@ export default [
   { type: 'list', author: `them`, data: { view_type: `horizontal`, items: [ { message_type: 'text', text: `This is a TEXT message` }, { message_type: 'button', text: `This is a BUTTON message`, buttons: [ { text: `Yes` }, { text: `No` } ] }, { message_type: 'image', img_src: `https://cdn.pixabay.com/photo/2016/10/17/10/52/wind-farm-1747331__340.jpg` }, { message_type: 'rich', title: `This is title`, subtitle: `This is subtitle`, text: `This is a RICH message`, image: { src: `https://cdn.pixabay.com/photo/2016/10/17/10/52/wind-farm-1747331__340.jpg` }, buttons: [ { text: `Yes` }, { text: `No` } ] } ] } },
   { type: 'list', author: `them`, data: { view_type: `vertical`, items: [ { message_type: 'text', text: `This is a TEXT message` }, { message_type: 'button', text: `This is a BUTTON message`, buttons: [ { text: `Yes` }, { text: `No` } ] }, { message_type: 'image', img_src: `https://cdn.pixabay.com/photo/2016/10/17/10/52/wind-farm-1747331__340.jpg` }, { message_type: 'rich', title: `This is title`, subtitle: `This is subtitle`, text: `This is a RICH message`, image: { src: `https://cdn.pixabay.com/photo/2016/10/17/10/52/wind-farm-1747331__340.jpg` }, buttons: [ { text: `Yes` }, { text: `No` } ] } ] } },
   { type: 'text', author: `them`, data: { text: `This is a message with hidetime`, time: `10:02`, hidetime: `true` } },
-  { type: 'button', author: `them`, data: { text: `This is a BUTTON message`, external: `true`, buttons: [ { text: `Yes` }, { text: `No` }, { text: `Sometimes` } ] } },
+  { type: 'button', author: `them`, data: { text: `This is a BUTTON message`, external: `true`, buttons: [ { text: `Yes`, display: true }, { text: `No`, display: true }, { text: `Sometimes`, display: false }, { text: ``, display: true } ] } },
 ]
